@@ -1,13 +1,8 @@
-// # +====================================================================================+ #
-// # |================================= Powerk-soft ======================================| #
-// # |====================== bus-tickets app - All rights reserved =======================| #
-// # |======================= Programmer: NDANG ESSI Pierre Junior =======================| #
-// # +====================================================================================+ #
 
 import { useState } from 'react';
 import './styleC.css';
 import CustomAlert from '../Alert';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,  Link } from "react-router-dom";
 import {LinearProgress, Box} from '@mui/material';
 
 export default function UserSignUp() {
@@ -75,7 +70,7 @@ export default function UserSignUp() {
                     <div className='contain'>
                         <p className='intro'>Nice to see you</p>
                         <p className='welcome'>Welcome to the website</p>
-                        <p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to beautify your days <span>for sure, rapidly and in a secured manner,</span> you are at the right place.</p>
+                        <p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>
 
                     </div>
                 </div>
@@ -119,11 +114,9 @@ export default function UserSignUp() {
                         </div>
                         
                         <div className="validation">
-                            <button onClick={handleAbort} className="btn-reset" type="reset">
-                                Discard
-                            </button>
+                            <Link to="/login"className="Link" >Already have an account ?</Link>
                             <button onClick={handleSubmit} className="btn-submit" type="submit">
-                                Next
+                                Sign up
                             </button>
                         </div>
                     </form>
