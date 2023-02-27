@@ -4,7 +4,7 @@ import './styleC.css';
 import CustomAlert from '../Alert';
 import {Form} from "react-bootstrap"
 import { useNavigate,  Link } from "react-router-dom";
-import {LinearProgress, Box} from '@mui/material';
+import {CircularProgress, Box} from '@mui/material';
 import { ToastContainer, toast } from "react-toastify";
 import  axios  from "axios";
 import 'react-toastify/dist/ReactToastify.css';
@@ -148,9 +148,6 @@ export default function UserSignUp() {
                     <div className='heading'>
                         <p>Sign up</p>
                     </div>
-                    {isLoading && <Box sx={{ width: '95%'}}>
-                        <LinearProgress />
-                    </Box>}
                     <form className="client-register-form">
                         
                         <div className="full-name">
@@ -186,6 +183,12 @@ export default function UserSignUp() {
                         </Form.Group>
                         
                         <div className="validation">
+                            <div className='progress'>
+                                {isLoading && <Box sx={{ width: '95%'}}>
+                                    
+                                    <CircularProgress color="success" />
+                                </Box>}
+                            </div>
                             <button onClick={handleSubmit} className="btn-submit" type="submit">
                                 Sign up
                             </button>
