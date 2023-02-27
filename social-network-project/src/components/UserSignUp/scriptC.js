@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import './styleC.css';
 import CustomAlert from '../Alert';
+import {Form} from "react-bootstrap"
 import { useNavigate,  Link } from "react-router-dom";
 import {LinearProgress, Box} from '@mui/material';
 
@@ -51,10 +52,12 @@ export default function UserSignUp() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (fullName === '' || username === '' || email === '' || password === '' || gender === '') {
+            console.log(gender)
             setError(true); 
         } else {
             setIsLoading(true);
             setError(false);
+            console.log(gender)
         }
     };
     const handleAbort = (e) => {
@@ -62,7 +65,6 @@ export default function UserSignUp() {
             setError(true); 
     };
     
-
     return (
         <div className='main-c'>
             <div className="descriptor-c" >
@@ -107,11 +109,17 @@ export default function UserSignUp() {
                             <label for="password-text" className="label">Password</label>
 
                         </div>
-                        <div className="gender">
-                            <input onChange={handleGender} type="text" className="input-area" required id="gender-text" />
-                            <label for="gender-text" className="label">Gender</label>
-
-                        </div>
+                        <Form.Group className="gender">
+                            <Form.Label className='name'>Gender</Form.Label>
+                            <div className='options'>
+                                <Form.Check type="radio" name="gender"  className="gender-value" label="Male" value="Male"  onClick={(e) => {
+                                setGender(e.target.value)
+                                }}/>
+                                <Form.Check type="radio"  name="gender" className="gender-value" label="Female"  value="Female"  onClick={(e) => {
+                                setGender(e.target.value)
+                                }}/>
+                            </div>
+                        </Form.Group>
                         
                         <div className="validation">
                             <button onClick={handleSubmit} className="btn-submit" type="submit">
