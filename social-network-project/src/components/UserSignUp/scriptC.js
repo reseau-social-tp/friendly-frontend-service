@@ -5,6 +5,9 @@ import CustomAlert from '../Alert';
 import {Form} from "react-bootstrap"
 import { useNavigate,  Link } from "react-router-dom";
 import {LinearProgress, Box} from '@mui/material';
+import { ToastContainer, toast } from "react-toastify";
+import  axios  from "axios";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function UserSignUp() {
 
@@ -47,17 +50,59 @@ export default function UserSignUp() {
         setGender(e.target.value);
         setSubmitted(false);
     };
-
+    const generateError = (err) =>
+    toast.error(err, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+    })
+    const generateSuccess = (msg) =>
+        toast.success(msg, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+        })
     // Handling the form submission
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsLoading(true)
+
         if (fullName === '' || username === '' || email === '' || password === '' || gender === '') {
-            console.log(gender)
             setError(true); 
+            setAlertType("error")
+            if (fullName === ""){
+                setIsLoading(false)
+                return generateError("Please enter your full name.")
+            } 
+            else if (username === ""){
+                setIsLoading(false)
+                return generateError("Please enter your username.")
+            } 
+            else if (email === ""){
+                setIsLoading(false)
+                return generateError("Please enter your email.")
+            } 
+            else if (password === ""){
+                setIsLoading(false)
+                return generateError("Please enter your password.")
+            } 
+            else if (gender === ""){
+                setIsLoading(false)
+                return generateError("Please select your gender.")
+            }else{
+
+            }
         } else {
-            setIsLoading(true);
             setError(false);
-            console.log(gender)
+            return signUp()
         }
     };
     const handleAbort = (e) => {
@@ -65,6 +110,25 @@ export default function UserSignUp() {
             setError(true); 
     };
     
+    const signUp = () =>  {
+        const values = { 
+            "fullname": fullName,
+            "username":username,
+            "email":email,
+            "password":password,
+            "gender":gender
+        };
+
+        axios.post('https://social-network-auth-service.onrender.com/api/register', values).then((response) => {
+            setIsLoading(false);
+            return generateSuccess(response.data.msg)
+        })
+        .catch((error) => {
+            setIsLoading(false);
+            return generateError(error.response.data.msg)
+        });
+    }
+
     return (
         <div className='main-c'>
             <div className="descriptor-c" >
@@ -78,7 +142,7 @@ export default function UserSignUp() {
                 </div>
             </div>
             <div className="recorder-c">
-                {submitted && <CustomAlert alertType={alertType} msg={message}/>}
+
                 
                 <div className="form">
                     <div className='heading'>
@@ -90,7 +154,7 @@ export default function UserSignUp() {
                     <form className="client-register-form">
                         
                         <div className="full-name">
-                            <input onChange={handleFullName} type="text" className="input-area" required id="full-name-text" />
+                            <input onChange={handleFullName} type="text" className="input-area" id="full-name-text" required/>
                             <label for="full-name-text" className="label">Full name</label>
 
                         </div>
@@ -128,7 +192,7 @@ export default function UserSignUp() {
                             <div className="login">
                                 <p>Already have an account ?</p>
                                 <button onClick={handleSubmit} className="btn-login" type="submit">
-                                    Login
+                                    Log in
                                 </button>
                             </div>
                         </div>
@@ -137,6 +201,7 @@ export default function UserSignUp() {
                 </div>
             </div>
             
+            <ToastContainer/>
         </div>
         
     );
