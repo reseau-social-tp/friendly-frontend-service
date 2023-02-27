@@ -2,7 +2,7 @@
 :root{
     /* theme */
     --primary: #317773;
-    --secondary: #E2D1F9;
+    --secondary: #CBD18F;
     --black: #000;
     --white: #fff;
 }
@@ -196,23 +196,28 @@ form.client-register-form div.validation .progress{
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
     font-size: 23px;
     font-weight: bold;
-    background-color: var(--primary);
-    border: 1px solid #1a3b53;
+    background-color: #296360;
+    border: 1px solid #296360;
 
 }
 .btn-login {
-    background-color: var(--secondary);
-    border: 1px solid #E2D1F9;
+    background-color: #a3a772;
+    border: 1px solid #a3a772;
     color: 
-    var(--black);
+    /* var(--black); */
 }
 .btn-submit {
     width: 20rem;
     border-radius: 2rem;
 
 }
-.btn-submit:hover, .btn-login:hover {
-    background-color: #1a3b53;
+.btn-submit:hover{
+    background-color: var(--primary);
+
+}
+
+.btn-login:hover {
+    background-color: var(--secondary);
 }
 
 

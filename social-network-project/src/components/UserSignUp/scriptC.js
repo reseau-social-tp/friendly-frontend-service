@@ -42,6 +42,9 @@ export default function UserSignUp() {
         setEmail(e.target.value);
         setSubmitted(false);
     };
+    function isValidEmail(email) {
+      return /\S+@\S+\.\S+/.test(email);
+    }
     const handlePassword = (e) => {
         setPassword(e.target.value);
         setSubmitted(false);
@@ -100,6 +103,11 @@ export default function UserSignUp() {
             }else{
 
             }
+        }
+        else if (!isValidEmail(email)) {
+            setError(true);
+            setIsLoading(false)
+            return generateError('Email is invalid')
         } else {
             setError(false);
             return signUp()
