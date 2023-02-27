@@ -80,7 +80,7 @@ export default function UserSignUp() {
                 
                 <div className="form">
                     <div className='heading'>
-                        <h2>Sign up</h2>
+                        <p>Sign up</p>
                     </div>
                     {isLoading && <Box sx={{ width: '95%'}}>
                         <LinearProgress />
@@ -114,10 +114,15 @@ export default function UserSignUp() {
                         </div>
                         
                         <div className="validation">
-                            <Link to="/login"className="Link" >Already have an account ?</Link>
                             <button onClick={handleSubmit} className="btn-submit" type="submit">
                                 Sign up
                             </button>
+                            <div className="login">
+                                <p>Already have an account ?</p>
+                                <button onClick={handleSubmit} className="btn-login" type="submit">
+                                    Login
+                                </button>
+                            </div>
                         </div>
                     </form>
 
