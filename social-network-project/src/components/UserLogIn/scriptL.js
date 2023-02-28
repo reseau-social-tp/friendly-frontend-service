@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import './styleC.css';
+// import './styleC.css';
 import CustomAlert from '../Alert';
 import {Form} from "react-bootstrap"
 import { useNavigate,  Link } from "react-router-dom";
@@ -89,8 +89,8 @@ export default function UserLogIn() {
         }
     };
     const handleAbort = (e) => {
-        // e.preventDefault();
-            setError(true); 
+        e.preventDefault();
+        navigate("/sign-up")
     };
     
     const signUp = () =>  {
@@ -152,7 +152,7 @@ export default function UserLogIn() {
                             </button>
                             <div className="login">
                                 <p>Don't have an account yet ?</p>
-                                <button onClick={handleSubmit} className="btn-login" type="submit">
+                                <button onClick={handleAbort} className="btn-login" type="submit">
                                     Sign up
                                 </button>
                             </div>

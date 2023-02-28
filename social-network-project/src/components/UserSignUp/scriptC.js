@@ -114,8 +114,8 @@ export default function UserSignUp() {
         }
     };
     const handleAbort = (e) => {
-        // e.preventDefault();
-            setError(true); 
+        e.preventDefault();
+        navigate("/log-in")
     };
     
     const signUp = () =>  {
@@ -202,7 +202,7 @@ export default function UserSignUp() {
                             </button>
                             <div className="login">
                                 <p>Already have an account ?</p>
-                                <button onClick={handleSubmit} className="btn-login" type="submit">
+                                <button onClick={handleAbort} className="btn-login" type="submit">
                                     Log in
                                 </button>
                             </div>
