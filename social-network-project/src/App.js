@@ -1,14 +1,16 @@
 import './App.css';
 import {BrowserRouter, Route, Routes}  from "react-router-dom"
 import UserSignUp from './components/UserSignUp/scriptC';
+import UserLogIn from './components/UserLogIn/scriptL';
 function App() {   
     
     return (
     <div className="App">
     <BrowserRouter>
         <Routes>
-        <Route index element={<UserSignUp/>} />
+        <Route index element={<UserLogIn/>} />
         <Route path='/sign-up' element={<UserSignUp/>}/>
+        <Route path='/log-in' element={<UserLogIn/>}/>
         {/* TODO */}
         
         </Routes>

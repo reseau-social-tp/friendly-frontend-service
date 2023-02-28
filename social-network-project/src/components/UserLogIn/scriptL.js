@@ -27,14 +27,7 @@ export default function UserLogIn() {
     // const [validated, setValidated] = useState(false);
 
     // Handling changes
-    const handleFullName = (e) => {
-        setFullName(e.target.value);
-        setSubmitted(false);
-    };
-    const handleUsername = (e) => {
-        setUsername(e.target.value);
-        setSubmitted(false);
-    };
+    
     const handleEmail = (e) => {
         setEmail(e.target.value);
         setSubmitted(false);
@@ -44,10 +37,6 @@ export default function UserLogIn() {
     }
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        setSubmitted(false);
-    };
-    const handleGender = (e) => {
-        setGender(e.target.value);
         setSubmitted(false);
     };
     const generateError = (err) =>
@@ -133,24 +122,13 @@ export default function UserLogIn() {
                 </div>
             </div>
             <div className="recorder-c">
-
                 
                 <div className="form">
                     <div className='heading'>
-                        <p>Sign up</p>
+                        <p>Log in</p>
                     </div>
                     <form className="client-register-form">
                         
-                        <div className="full-name">
-                            <input onChange={handleFullName} type="text" className="input-area" id="full-name-text" required/>
-                            <label for="full-name-text" className="label">Full name</label>
-
-                        </div>
-                        <div className="username">
-                            <input onChange={handleUsername} type="text" className="input-area" required id="username-text" />
-                            <label for="username-text" className="label">Username</label>
-
-                        </div>
                         <div className="email">
                             <input onChange={handleEmail} type="text" className="input-area" required id="email-text" />
                             <label for="email-text" className="label">Email</label>
@@ -161,17 +139,6 @@ export default function UserLogIn() {
                             <label for="password-text" className="label">Password</label>
 
                         </div>
-                        <Form.Group className="gender">
-                            <Form.Label className='name'>Gender</Form.Label>
-                            <div className='options'>
-                                <Form.Check type="radio" name="gender"  className="gender-value" label="Male" value="Male"  onClick={(e) => {
-                                setGender(e.target.value)
-                                }}/>
-                                <Form.Check type="radio"  name="gender" className="gender-value" label="Female"  value="Female"  onClick={(e) => {
-                                setGender(e.target.value)
-                                }}/>
-                            </div>
-                        </Form.Group>
                         
                         <div className="validation">
                             <div className='progress'>
@@ -181,12 +148,12 @@ export default function UserLogIn() {
                                 </Box>}
                             </div>
                             <button onClick={handleSubmit} className="btn-submit" type="submit">
-                                Sign up
+                                Log in
                             </button>
                             <div className="login">
-                                <p>Already have an account ?</p>
+                                <p>Don't have an account yet ?</p>
                                 <button onClick={handleSubmit} className="btn-login" type="submit">
-                                    Log in
+                                    Sign up
                                 </button>
                             </div>
                         </div>
