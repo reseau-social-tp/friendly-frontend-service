@@ -9,14 +9,11 @@ import { ToastContainer, toast } from "react-toastify";
 import  axios  from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function UserSignUp() {
+export default function UserLogIn() {
 
     // States for registration
-    const [fullName, setFullName] = useState('');
-    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [gender, setGender] = useState('');
     
     const [message, setmessage] = useState('');
     const [alertType, setAlertType] = useState('');
@@ -78,28 +75,17 @@ export default function UserSignUp() {
         e.preventDefault();
         setIsLoading(true)
 
-        if (fullName === '' || username === '' || email === '' || password === '' || gender === '') {
+        if ( email === '' || password === '') {
             setError(true); 
             setAlertType("error")
-            if (fullName === ""){
-                setIsLoading(false)
-                return generateError("Please enter your full name.")
-            } 
-            else if (username === ""){
-                setIsLoading(false)
-                return generateError("Please enter your username.")
-            } 
-            else if (email === ""){
+            
+            if (email === ""){
                 setIsLoading(false)
                 return generateError("Please enter your email.")
             } 
             else if (password === ""){
                 setIsLoading(false)
                 return generateError("Please enter your password.")
-            } 
-            else if (gender === ""){
-                setIsLoading(false)
-                return generateError("Please select your gender.")
             }else{
 
             }
@@ -120,14 +106,11 @@ export default function UserSignUp() {
     
     const signUp = () =>  {
         const values = { 
-            "fullname": fullName,
-            "username":username,
             "email":email,
-            "password":password,
-            "gender":gender
+            "password":password
         };
 
-        axios.post('https://social-network-auth-service.onrender.com/api/register', values).then((response) => {
+        axios.post('https://social-network-auth-service.onrender.com/api/login', values).then((response) => {
             setIsLoading(false);
             return generateSuccess(response.data.msg)
         })
@@ -142,8 +125,8 @@ export default function UserSignUp() {
             <div className="descriptor-c" >
                 <div className='normalizer-c'>
                     <div className='contain'>
-                        <p className='intro'>Nice to see you</p>
-                        <p className='welcome'>Welcome to the website</p>
+                        <p className='intro'>Nice to see you again</p>
+                        <p className='welcome'>Welcome back to the website</p>
                         <p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>
 
                     </div>
