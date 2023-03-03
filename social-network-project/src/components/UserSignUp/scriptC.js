@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import './styleC.css';
-import CustomAlert from '../Alert';
 import {Form} from "react-bootstrap"
 import { useNavigate,  Link } from "react-router-dom";
 import {CircularProgress, Box} from '@mui/material';
@@ -18,7 +17,6 @@ export default function UserSignUp() {
     const [password, setPassword] = useState('');
     const [gender, setGender] = useState('');
     
-    const [message, setmessage] = useState('');
     const [alertType, setAlertType] = useState('');
     const navigate = useNavigate()
 
@@ -49,10 +47,7 @@ export default function UserSignUp() {
         setPassword(e.target.value);
         setSubmitted(false);
     };
-    const handleGender = (e) => {
-        setGender(e.target.value);
-        setSubmitted(false);
-    };
+    
     const generateError = (err) =>
     toast.error(err, {
         position: "top-right",
