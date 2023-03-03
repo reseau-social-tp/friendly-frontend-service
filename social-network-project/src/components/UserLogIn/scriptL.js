@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 // import './styleC.css';
-import { useNavigate,  Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {CircularProgress, Box} from '@mui/material';
 import { ToastContainer, toast } from "react-toastify";
 import  axios  from "axios";
@@ -13,7 +13,6 @@ export default function UserLogIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-    const [message, setmessage] = useState('');
     const [alertType, setAlertType] = useState('');
     const navigate = useNavigate()
 
