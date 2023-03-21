@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter, Route, Routes}  from "react-router-dom"
-import UserSignUp from './components/UserSignUp/scriptC';
-import UserLogIn from './components/UserLogIn/scriptL';
+import UserSignUp from './pages/signUp';
+import UserLogIn from './pages/logIn';
 function App() {   
     
     return (

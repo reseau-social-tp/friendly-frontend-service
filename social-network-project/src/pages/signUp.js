@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import './styleC.css';
+import '../styles/signUp.css';
 import {Form} from "react-bootstrap"
 import { useNavigate,  Link } from "react-router-dom";
 import {CircularProgress, Box} from '@mui/material';
