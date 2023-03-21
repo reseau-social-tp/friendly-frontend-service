@@ -15,13 +15,10 @@ export default function UserLogIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-    const [alertType, setAlertType] = useState('');
     const navigate = useNavigate()
 
 
     // States for checking the errors
-    const [submitted, setSubmitted] = useState(false);
-    const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
     // const [validated, setValidated] = useState(false);
 
@@ -29,14 +26,12 @@ export default function UserLogIn() {
     
     const handleEmail = (e) => {
         setEmail(e.target.value);
-        setSubmitted(false);
     };
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
     }
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        setSubmitted(false);
     };
     const generateError = (err) =>
     toast.error(err, {
@@ -63,10 +58,7 @@ export default function UserLogIn() {
         e.preventDefault();
         setIsLoading(true)
 
-        if ( email === '' || password === '') {
-            setError(true); 
-            setAlertType("error")
-            
+        if ( email === '' || password === '') {            
             if (email === ""){
                 setIsLoading(false)
                 return generateError("Please enter your email.")
@@ -79,11 +71,9 @@ export default function UserLogIn() {
             }
         }
         else if (!isValidEmail(email)) {
-            setError(true);
             setIsLoading(false)
             return generateError('Email is invalid')
         } else {
-            setError(false);
             return signUp()
         }
     };
