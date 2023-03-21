@@ -2,9 +2,11 @@
 import { useState } from 'react';
 import '../styles/signUp.css';
 import {Form} from "react-bootstrap"
-import { useNavigate,  Link } from "react-router-dom";
-import {CircularProgress, Box} from '@mui/material';
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Entry from "../components/Entry"
+import Descriptor from "../components/Descriptor"
+import FormValidation from "../components/FormValidation"
 import  axios  from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,7 +19,6 @@ export default function UserSignUp() {
     const [password, setPassword] = useState('');
     const [gender, setGender] = useState('');
     
-    const [alertType, setAlertType] = useState('');
     const navigate = useNavigate()
 
 
@@ -25,7 +26,6 @@ export default function UserSignUp() {
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
-    // const [validated, setValidated] = useState(false);
 
     // Handling changes
     const handleFullName = (e) => {
@@ -68,6 +68,7 @@ export default function UserSignUp() {
             draggable: true,
             theme: "colored",
         })
+
     // Handling the form submission
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -75,7 +76,7 @@ export default function UserSignUp() {
 
         if (fullName === '' || username === '' || email === '' || password === '' || gender === '') {
             setError(true); 
-            setAlertType("error")
+
             if (fullName === ""){
                 setIsLoading(false)
                 return generateError("Please enter your full name.")
@@ -108,6 +109,7 @@ export default function UserSignUp() {
             return signUp()
         }
     };
+
     const handleAbort = (e) => {
         e.preventDefault();
         navigate("/log-in")
@@ -134,45 +136,19 @@ export default function UserSignUp() {
 
     return (
         <div className='main-c'>
-            <div className="descriptor-c" >
-                <div className='normalizer-c'>
-                    <div className='contain'>
-                        <p className='intro'>Nice to see you</p>
-                        <p className='welcome'>Welcome to the website</p>
-                        <p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>
-
-                    </div>
-                </div>
-            </div>
-            <div className="recorder-c">
-
-                
+            <Descriptor intro="Nice to see you"  welcome="Welcome to the website" encourager={<p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>}/>
+            
+            <div className="recorder-c">                
                 <div className="form">
                     <div className='heading'>
                         <p>Sign up</p>
                     </div>
                     <form className="client-register-form">
-                        
-                        <div className="full-name">
-                            <input onChange={handleFullName} type="text" className="input-area" id="full-name-text" required/>
-                            <label for="full-name-text" className="label">Full name</label>
+                        <Entry handler={handleFullName} type="text" identifier="full-name-text" label="Full name"/>
+                        <Entry handler={handleUsername} type="text" identifier="username-text" label="Username"/>
+                        <Entry handler={handleEmail} type="text" identifier="email-text" label="Email"/>
+                        <Entry handler={handlePassword} type="password" identifier="password-text" label="Password"/>
 
-                        </div>
-                        <div className="username">
-                            <input onChange={handleUsername} type="text" className="input-area" required id="username-text" />
-                            <label for="username-text" className="label">Username</label>
-
-                        </div>
-                        <div className="email">
-                            <input onChange={handleEmail} type="text" className="input-area" required id="email-text" />
-                            <label for="email-text" className="label">Email</label>
-
-                        </div>
-                        <div className="password">
-                            <input onChange={handlePassword} type="password" className="input-area" required id="password-text" />
-                            <label for="password-text" className="label">Password</label>
-
-                        </div>
                         <Form.Group className="gender">
                             <Form.Label className='name'>Gender</Form.Label>
                             <div className='options'>
@@ -185,23 +161,8 @@ export default function UserSignUp() {
                             </div>
                         </Form.Group>
                         
-                        <div className="validation">
-                            <div className='progress'>
-                                {isLoading && <Box sx={{ width: '95%'}}>
-                                    
-                                    <CircularProgress color="success" />
-                                </Box>}
-                            </div>
-                            <button onClick={handleSubmit} className="btn-submit" type="submit">
-                                Sign up
-                            </button>
-                            <div className="login">
-                                <p>Already have an account ?</p>
-                                <button onClick={handleAbort} className="btn-login" type="submit">
-                                    Log in
-                                </button>
-                            </div>
-                        </div>
+                        <FormValidation isLoading={isLoading} submitHandler={handleSubmit} primaryLabel="Sign up" secondaryMessage="Already have an account ?" abortHandler={handleAbort} secondaryLabel="Log in"/>
+                        
                     </form>
 
                 </div>

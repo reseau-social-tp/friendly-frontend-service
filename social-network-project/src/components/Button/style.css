@@ -1,0 +1,30 @@
+
+.secondary, .primary{
+    border-radius: 2rem;
+        width: 6rem;
+    height: 2.5rem;
+    color: white;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+    background-color: #296360;
+    border: 1px solid #296360;
+
+}
+.secondary {
+    background-color: #a3a772;
+    border: 1px solid #a3a772;
+}
+.primary {
+    width: 20rem;
+    border-radius: 2rem;
+
+}
+.primary:hover{
+    background-color: var(--primary);
+
+}
+
+.secondary:hover {
+    background-color: var(--secondary);
+}

@@ -2,9 +2,11 @@
 import { useState } from 'react';
 import '../styles/logIn.css';
 import { useNavigate } from "react-router-dom";
-import {CircularProgress, Box} from '@mui/material';
 import { ToastContainer, toast } from "react-toastify";
 import  axios  from "axios";
+import Entry from "../components/Entry"
+import Descriptor from "../components/Descriptor"
+import FormValidation from "../components/FormValidation"
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function UserLogIn() {
@@ -108,52 +110,19 @@ export default function UserLogIn() {
 
     return (
         <div className='main-c'>
-            <div className="descriptor-c" >
-                <div className='normalizer-c'>
-                    <div className='contain'>
-                        <p className='intro'>Nice to see you again</p>
-                        <p className='welcome'>Welcome back to the website</p>
-                        <p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>
-
-                    </div>
-                </div>
-            </div>
+            <Descriptor intro="Nice to see you again"  welcome="Welcome back to the website" encourager={<p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>}/>
+            
             <div className="recorder-c">
                 
                 <div className="form">
                     <div className='heading'>
                         <p>Log in</p>
                     </div>
-                    <form className="client-register-form">
+                    <form className="client-login-form">
+                        <Entry handler={handleEmail} type="text" identifier="email-text" label="Email"/>
+                        <Entry handler={handlePassword} type="password" identifier="password-text" label="Password"/>
                         
-                        <div className="email">
-                            <input onChange={handleEmail} type="text" className="input-area" required id="email-text" />
-                            <label for="email-text" className="label">Email</label>
-
-                        </div>
-                        <div className="password">
-                            <input onChange={handlePassword} type="password" className="input-area" required id="password-text" />
-                            <label for="password-text" className="label">Password</label>
-
-                        </div>
-                        
-                        <div className="validation">
-                            <div className='progress'>
-                                {isLoading && <Box sx={{ width: '95%'}}>
-                                    
-                                    <CircularProgress color="success" />
-                                </Box>}
-                            </div>
-                            <button onClick={handleSubmit} className="btn-submit" type="submit">
-                                Log in
-                            </button>
-                            <div className="login">
-                                <p>Don't have an account yet ?</p>
-                                <button onClick={handleAbort} className="btn-login" type="submit">
-                                    Sign up
-                                </button>
-                            </div>
-                        </div>
+                        <FormValidation isLoading={isLoading} submitHandler={handleSubmit} primaryLabel="Log in" secondaryMessage="Don't have an account ?" abortHandler={handleAbort} secondaryLabel="Sign up"/>
                     </form>
 
                 </div>

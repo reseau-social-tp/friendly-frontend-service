@@ -1,0 +1,60 @@
+
+div.entry-container {
+    position: relative;
+    margin: 0.5rem 1rem;
+    border-radius: 2rem;
+}
+
+.input-area {
+    outline: none;
+    border: 1px solid var(--white);
+    border-bottom: 5px solid var(--primary);
+    padding: 10px 13px;
+    width: 20rem;
+    font-size: 18px;
+    /* border-radius: 5px; */
+}
+
+.input-area:valid+.label {
+    top: -8px;
+    padding: 0 3px;
+    font-size: 14px;
+    color: var(--primary);
+}
+
+.input-area:focus {
+    border: 1px solid var(--white);
+    border-bottom: 5px solid var(--primary);
+}
+
+.label {
+    color: var(--primary);
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    background: #ffffff;
+}
+
+.input-area:focus+.label {
+    top: -8px;
+    padding: 0 3px;
+    font-size: 14px;
+    color: var(--primary);
+}
+
+
+@media screen and (min-width: 350px) and (max-width: 430px) {
+    .input-area {
+        width: 19rem;
+    }
+}
+@media screen and (min-width: 431px) and (max-width: 780px) {
+    .input-area {
+        width: 23rem;
+    }
+}
+@media screen and (min-width: 781px) and (max-width: 990px) {
+    .input-area {
+        width: 30rem;
+    }
+}
