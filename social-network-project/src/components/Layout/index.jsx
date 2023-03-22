@@ -12,8 +12,13 @@ import {
 import {
   faHome,
   faFaceSmile,
+  faFaceLaugh,
+  faRectangleList,
   faUsers,
-  faSearch
+  faSearch,
+  faCommenting,
+  faBell,
+  faUser
 } from '@fortawesome/free-solid-svg-icons'
 
 const Layout = () => {
@@ -49,7 +54,7 @@ const Layout = () => {
                                 <FontAwesomeIcon
                                 icon={faHome}
                                 color="var(--primary)"
-                                className="nav-icon"
+                                className="nav-icon option"
                                 /> 
                                 <span>Home</span>
                             </Link>
@@ -77,33 +82,48 @@ const Layout = () => {
                       </Nav>
                       <Nav className="me-auto option-links-container">
                           <Navbar.Brand>
+                            <Link to='/' className="nav-links friends">
+                                <span>Meet friends</span>
+                            </Link>
+                          </Navbar.Brand>
+                          <Navbar.Brand>
                             <Link to='/' className="nav-links">
                                 <FontAwesomeIcon
-                                icon={faHome}
+                                icon={faRectangleList}
                                 color="var(--primary)"
-                                className="nav-icon"
+                                className="nav-icon option"
                                 /> 
-                                <span>Home</span>
+                                {/* <span>Menu</span> */}
                             </Link>
                           </Navbar.Brand>
                           <Navbar.Brand>
                             <Link to='/obstetricale' className="nav-links">
                               <FontAwesomeIcon
-                                icon={faFaceSmile}
+                                icon={faCommenting}
                                 color="var(--primary)"
-                                className="nav-icon"
+                                className="nav-icon option"
                                 /> 
-                                <span>Friends</span>
+                                {/* <span>Chat</span> */}
                             </Link>
                           </Navbar.Brand>
                           <Navbar.Brand>
                             <Link to='/pelvienne' className="nav-links">
                               <FontAwesomeIcon
-                                icon={faUsers}
+                                icon={faBell}
                                 color="var(--primary)"
-                                className="nav-icon"
+                                className="nav-icon option"
                                 /> 
-                              <span>Groups</span>
+                              {/* <span>Notification</span> */}
+                            </Link>
+                          </Navbar.Brand>
+                          <Navbar.Brand>
+                            <Link to='/pelvienne' className="nav-links">
+                              <FontAwesomeIcon
+                                icon={faUser}
+                                color="var(--primary)"
+                                className="nav-icon option"
+                                /> 
+                              {/* <span>Profile</span> */}
                             </Link>
                           </Navbar.Brand>
                       </Nav>
