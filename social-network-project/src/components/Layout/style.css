@@ -4,7 +4,7 @@
     top: 0;
     height: 10vh;
     width: 100vw;
-    background-color: red;
+    background-color: var(--white);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -13,8 +13,6 @@
 
 .navbar-back-layer{
     position: relative;
-    background-color:#132211;
-    background-color: blue;
     width:95vw;
     display: flex;
     flex-direction: row;
@@ -23,8 +21,6 @@
 }
 .navbar-container{
     position: relative;
-    background-color:#132211;
-    background-color: yellow;
     height: 100%;
     width:95vw;
     display: flex;
@@ -34,12 +30,11 @@
 }
 .utility{
     height: 100%;
-    width:30%;
+    width:35%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    background-color: indigo;
     /* position: relative; */
     
 }
@@ -48,19 +43,18 @@
     width:90%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: brown;
+    justify-content: left;
+    align-items: left;
     position: relative;
     
 }
 
 .search-input input {
     position: absolute;
-    right: 0;
+    left: 4rem;
     top: 0.5rem;
     height: 2.5rem;
-    width: 10vw;
+    width: 13vw;
     color: #2c3e50;
     font-size: 18px;
     outline: none;
@@ -72,20 +66,19 @@
 
 .search-input .icon {
     position: absolute;
-    right: 10px;
+    left: 4.5rem;
     top: 1.3rem;
     z-index: 1;
-    /* padding-left: 5px;
-    border-left: 2px solid #2c3e50; */
+    padding-right: 5px;
+    border-right: 2px solid #2c3e50;
 }
 .links-container{
     height: 100%;
-    width:70%;
+    width:65%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: blue;
 
 }
 .nav-links-container{
@@ -95,23 +88,11 @@
     align-items: center;
     width: 30vw;
     height: 100%;
-    background-color: green;
 }
 .option-links-container{
-    background-color: orangered;
     display: flex;
     flex-direction: row;
-    justify-content: center!important;
-    align-items: center;
-    width: 20vw;
-    height: 100%;
-
-}
-.option-links-container{
-    background-color: orangered;
-    display: flex;
-    flex-direction: row;
-    justify-content: center!important;
+    justify-content: center;
     align-items: center;
     width: 25vw;
     height: 100%;
