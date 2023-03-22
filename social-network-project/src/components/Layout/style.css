@@ -1,0 +1,123 @@
+.navbar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 10vh;
+    width: 100vw;
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-back-layer{
+    position: relative;
+    background-color:#132211;
+    background-color: blue;
+    width:95vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.navbar-container{
+    position: relative;
+    background-color:#132211;
+    background-color: yellow;
+    height: 100%;
+    width:95vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.utility{
+    height: 100%;
+    width:30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: indigo;
+    /* position: relative; */
+    
+}
+.utility-items{
+    height: 90%;
+    width:90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: brown;
+    position: relative;
+    
+}
+
+.search-input input {
+    position: absolute;
+    right: 0;
+    top: 0.5rem;
+    height: 2.5rem;
+    width: 10vw;
+    color: #2c3e50;
+    font-size: 18px;
+    outline: none;
+    border: 2px solid #2c3e50;
+    border-radius: 1rem;
+    padding: 0px 10px 0px 40px;
+    z-index: 0;
+}
+
+.search-input .icon {
+    position: absolute;
+    right: 10px;
+    top: 1.3rem;
+    z-index: 1;
+    padding-left: 5px;
+    border-left: 2px solid #2c3e50;
+}
+.links-container{
+    height: 100%;
+    width:70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: blue;
+
+}
+.nav-links-container, .option-links-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30vw;
+    height: 100%;
+    /* background-color: green; */
+}
+.nav-links{
+    color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem 2rem;
+    text-decoration: none;
+    border-radius: 0.3rem;
+}
+.nav-links:hover{
+    background-color: var(--secondary);
+}
+.nav-icon{
+
+    font-size: 1.5rem;
+}
+.logo-icon{
+    position: absolute;
+    left: 0;
+    top: 0.2rem;
+
+    font-size: 3rem;
+}

@@ -1,0 +1,72 @@
+/* Navbar{
+    background-color:"#132211";
+}
+@media screen and (min-width: 350px) and (max-width: 430px) {
+    .input-area, div.form div.heading, div.gender {
+        width: 19rem;
+    }
+    div.validation {
+        width: 22rem;
+    }
+}
+@media screen and (min-width: 431px) and (max-width: 780px) {
+    .input-area, div.form div.heading, div.gender {
+        width: 23rem;
+    }
+    div.validation {
+        width: 26rem;
+    }
+    div.logo img {
+        width: 180px;
+    }
+}
+@media screen and (min-width: 781px) and (max-width: 990px) {
+    .input-area, div.form div.heading, div.gender {
+        width: 30rem;
+    }
+    div.validation {
+        width: 33rem;
+    }
+    div.logo img {
+        width: 210px;
+    }
+}
+
+@media screen and (min-width: 991px){
+    div.main-c{
+        flex-direction:row;
+    
+    }
+    div.descriptor-c{
+        width: 60%;
+        height: 100%;
+    
+    }
+    div.recorder-c{
+        width: 40%;
+        height: 100%;
+    }
+    div.contain{
+        align-items: center;
+    }
+    div.normalizer-c p{
+        text-align: center;
+        font-size: 1.3rem;
+        
+    }
+    div.normalizer-c p.welcome{
+        text-align: center;
+        font-size: 3rem;
+    }
+    div.normalizer-c p.encourager{
+        text-align: center;
+        width: 80%;
+        
+    }
+    div.main-c div.recorder-c div.form div.steps-c{
+        height: 1%;
+    }
+    div.form{
+        justify-content: center;
+    }
+} */
