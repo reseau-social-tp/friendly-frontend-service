@@ -1,10 +1,11 @@
-import {React, Outlet} from "react-router-dom";
-import { Link } from 'react-router-dom'
+import {React, Outlet, Link} from "react-router-dom";
+import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button'
 import "./style.css"
+import logo from "../../assets/images/logo2.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faFacebook
@@ -12,6 +13,7 @@ import {
 import {
   faHome,
   faFaceSmile,
+  faPlayCircle,
   faFaceLaugh,
   faRectangleList,
   faUsers,
@@ -22,6 +24,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 const Layout = () => {
+
   return (
     <div className="layout">
       <div className="navbar">
@@ -29,27 +32,27 @@ const Layout = () => {
               <Container className="navbar-container">
                   <Navbar.Brand className="utility">
                       <div className="utility-items">
-                              {/* <img src={Logo} alt="Logo" style={{height:"4rem"}} /> */}
+                              <img src={logo} alt="Logo" className="logo-icon" style={{height:"3rem"}} />
                               
-                              <FontAwesomeIcon
+                              {/* <FontAwesomeIcon
                                 icon={faFacebook}
                                 color="var(--primary)"
                                 className="logo-icon"
-                                />  
+                                />   */}
                                 <div class="search-input">
                                     <FontAwesomeIcon
                                     icon={faSearch}
                                     color="var(--primary)"
                                     className="icon"
                                     />  
-                                    <input type="text" placeholder="Search here..."/>
+                                    <input type="text" placeholder="Search on Friendly"/>
                                 </div>
                       </div>
                   </Navbar.Brand>
                   {/* <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-dark" style={{color:"white"}}/> */}
                   <Navbar.Collapse className='justify-content-end links-container' id="basic-navbar-nav">
                       <Nav className="me-auto nav-links-container">
-                          <Navbar.Brand>
+                          <Navbar.Brand name="home">
                             <Link to='/' className="nav-links">
                                 <FontAwesomeIcon
                                 icon={faHome}
@@ -57,10 +60,11 @@ const Layout = () => {
                                 className="nav-icon option"
                                 /> 
                                 <span>Home</span>
+                                
                             </Link>
                           </Navbar.Brand>
-                          <Navbar.Brand>
-                            <Link to='/obstetricale' className="nav-links">
+                          <Navbar.Brand name="friends">
+                            <Link to='/obstetricale' className="nav-links" >
                               <FontAwesomeIcon
                                 icon={faFaceSmile}
                                 color="var(--primary)"
@@ -69,14 +73,24 @@ const Layout = () => {
                                 <span>Friends</span>
                             </Link>
                           </Navbar.Brand>
-                          <Navbar.Brand>
-                            <Link to='/pelvienne' className="nav-links">
+                          <Navbar.Brand name="video">
+                            <Link to='/obstetricale' className="nav-links" >
+                              <FontAwesomeIcon
+                                icon={faPlayCircle}
+                                color="var(--primary)"
+                                className="nav-icon"
+                                /> 
+                                <span>Streaming</span>
+                            </Link>
+                          </Navbar.Brand>
+                          <Navbar.Brand name="groups">
+                            <Link to='/pelvienne' className="nav-links" >
                               <FontAwesomeIcon
                                 icon={faUsers}
                                 color="var(--primary)"
                                 className="nav-icon"
                                 /> 
-                              <span>Groups</span>
+                                 <span>Groups</span>
                             </Link>
                           </Navbar.Brand>
                       </Nav>
