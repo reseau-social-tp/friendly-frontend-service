@@ -11,6 +11,7 @@ div.validation .progress{
     display: flex;
     height: 3rem;
     width: 40%;
+    background-color: white;
 }
 
 div.validation div.secondary-container {
