@@ -9,6 +9,7 @@ import Descriptor from "../components/Descriptor"
 import FormValidation from "../components/FormValidation"
 import  axios  from "axios";
 import 'react-toastify/dist/ReactToastify.css';
+import Logo from '../assets/images/logo2.png'
 
 export default function UserSignUp() {
 
@@ -136,12 +137,12 @@ export default function UserSignUp() {
 
     return (
         <div className='main-c'>
-            <Descriptor intro="Nice to see you"  welcome="Welcome to the website" encourager={<p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>}/>
+            <Descriptor intro="Nice to see you"  welcome={<p className='welcome'>Welcome to <span style={{color:"var(--secondary)"}}>friendly</span></p>} encourager={<p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>}/>
             
             <div className="recorder-c">                
                 <div className="form">
                     <div className='heading'>
-                        <p>Sign up</p>
+                        <img src={Logo} alt="Logo" style={{height:"4rem"}} />
                     </div>
                     <form className="client-register-form">
                         <Entry handler={handleFullName} type="text" identifier="full-name-text" label="Full name"/>

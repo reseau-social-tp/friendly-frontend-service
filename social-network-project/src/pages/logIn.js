@@ -8,6 +8,7 @@ import Entry from "../components/Entry"
 import Descriptor from "../components/Descriptor"
 import FormValidation from "../components/FormValidation"
 import 'react-toastify/dist/ReactToastify.css';
+import Logo from '../assets/images/logo2.png'
 
 export default function UserLogIn() {
 
@@ -100,13 +101,13 @@ export default function UserLogIn() {
 
     return (
         <div className='main-c'>
-            <Descriptor intro="Nice to see you again"  welcome="Welcome back to the website" encourager={<p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>}/>
+            <Descriptor intro="Nice to see you again"  welcome={<p className='welcome'>Welcome back to <span style={{color:"var(--secondary)"}}>friendly</span></p>} encourager={<p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>}/>
             
             <div className="recorder-c">
                 
                 <div className="form">
                     <div className='heading'>
-                        <p>Log in</p>
+                        <img src={Logo} alt="Logo" style={{height:"4rem"}} />
                     </div>
                     <form className="client-login-form">
                         <Entry handler={handleEmail} type="text" identifier="email-text" label="Email"/>

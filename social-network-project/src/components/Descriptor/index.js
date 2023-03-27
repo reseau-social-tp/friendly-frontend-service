@@ -7,7 +7,7 @@ export default function Descriptor(props) {
             <div className='normalizer'>
                 <div className='contain'>
                     <p className='intro'>{props.intro}</p>
-                    <p className='welcome'>{props.welcome}</p>
+                    {props.welcome}
                     {props.encourager}
                 </div>
             </div>

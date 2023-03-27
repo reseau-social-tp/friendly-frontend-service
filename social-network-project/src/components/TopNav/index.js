@@ -1,10 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button'
-// import Logo from '../../assests/images/Recho.png'
+import {Container, Nav, Navbar} from 'react-bootstrap';
+import "./style.css"
+import logo from "../../assets/images/logo2.png"
+import userIcon from "../../assets/images/user.svg"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+    faFacebook
+} from '@fortawesome/free-brands-svg-icons'
+import {
+    faHome,
+    faFaceSmile,
+    faPlayCircle,
+    faFaceLaugh,
+    faRectangleList,
+    faUsers,
+    faSearch,
+    faCommenting,
+    faBell,
+    faUser,
+    faFlag,
+    faShop
+} from '@fortawesome/free-solid-svg-icons'
 import "./style.css"
 
 const TopNav = () => {
@@ -17,54 +34,174 @@ const TopNav = () => {
     //     logout()
     // }
     return (
-        <div>
-            <Navbar sticky='top' expand="lg" className="header" style={{backgroundColor:"#132211", width:"100vw", height:"50vh"}} >
-                <Container >
-                    <Navbar.Brand  >
-                        <Link to="/">
-                            <div style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: "flex-start"
-                            }}>
-                                {/* <img src={Logo} alt="Logo" style={{height:"4rem"}} /> */}
+        <div class="header">
+            <div class="header-left">
+                <img src={logo} alt="Logo" className="logo-icon" style={{height:"3rem"}} />
+                <div class="header-input">
+                    <FontAwesomeIcon
+                    icon={faSearch}
+                    color="var(--primary)"
+                    className="icon"
+                    />  
+                <input type="text" placeholder="Search on Friendly..." />
+                </div>
+            </div>
+
+            <div class="header-middle">
+                <div class="header-option active">
+                    <FontAwesomeIcon
+                    icon={faHome}
+                    color="var(--primary)"
+                    className="nav-icon option"
+                    /> 
+                </div>
+                <div class="header-option">
+                    <FontAwesomeIcon
+                    icon={faPlayCircle}
+                    color="var(--primary)"
+                    className="nav-icon option"
+                    /> 
+                </div>
+                <div class="header-option">
+                    <FontAwesomeIcon
+                    icon={faShop}
+                    color="var(--primary)"
+                    className="nav-icon option"
+                    /> 
+                </div>
+                <div class="header-option">
+                    <FontAwesomeIcon
+                    icon={faUsers}
+                    color="var(--primary)"
+                    className="nav-icon option"
+                    /> 
+                </div>
+                <div class="header-option">
+                    <FontAwesomeIcon
+                    icon={faFlag}
+                    color="var(--primary)"
+                    className="nav-icon option"
+                    /> 
+                </div>
+            </div>
+
+            <div class="header-right">
+                <FontAwesomeIcon
+                icon={faRectangleList}
+                color="var(--primary)"
+                className="nav-icon option"
+                /> 
+                <FontAwesomeIcon
+                icon={faCommenting}
+                color="var(--primary)"
+                className="nav-icon option"
+                /> 
+                <FontAwesomeIcon
+                icon={faBell}
+                color="var(--primary)"
+                className="nav-icon option"/>
+                <div class="profile-info">
+                    <img class="user-avatar" src={userIcon} alt="User icon"/>
+                </div>
+            </div>
+            </div>
+    //     <div className="navbar">
+    //         <Navbar sticky='top' expand="md" className="navbar-back-layer" >
+    //             <Container className="navbar-container">
+    //                 <Navbar.Brand className="utility">
+    //                     <div className="utility-items">
+    //                             <img src={logo} alt="Logo" className="logo-icon" style={{height:"3rem"}} />
                                 
-                            </div>
-                        </Link>
-                    </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-dark" style={{color:"white"}}/>
-                    <Navbar.Collapse className='justify-content-end' id="basic-navbar-nav">
-                        {/* <Nav className="me-auto ">
-                            <Navbar.Brand><Link to='/' style={{ color: 'var(--secondary)' }}>Accueil</Link></Navbar.Brand>
-                            {
-                                user.user_type === 'user' && (
-                                    <>
-                                        <Navbar.Brand><Link to='/obstetricale' style={{ color: 'var(--secondary)' }}>Obstetricale</Link></Navbar.Brand>
-                                        <Navbar.Brand><Link to='/pelvienne' style={{ color: 'var(--secondary)' }}>Pelvienne</Link></Navbar.Brand>
-                                        <Navbar.Brand><Link to='/echoGene' style={{ color: 'var(--secondary)' }}>EchoGene</Link></Navbar.Brand>
-                                    </>
-                                )
-                            }
+    //                             {/* <FontAwesomeIcon
+    //                             icon={faFacebook}
+    //                             color="var(--primary)"
+    //                             className="logo-icon"
+    //                             />   */}
+    //                             <div class="search-input">
+    //                                 <FontAwesomeIcon
+    //                                 icon={faSearch}
+    //                                 color="var(--primary)"
+    //                                 className="icon"
+    //                                 />  
+    //                                 <input type="text" placeholder="Search on Friendly"/>
+    //                             </div>
+    //                     </div>
+    //                 </Navbar.Brand>
+    //                 <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-dark"/>
+    //                 <Navbar.Collapse className='justify-content-end links-container'  id="basic-navbar-nav">
+    //                     <Nav className="me-auto nav-links-container">
 
-                            {user.user_type === 'admin' && (
-                                
-                                <>
-                                    <Navbar.Brand><Link to='/userControl' style={{ color: 'var(--secondary)' }}>UserControl</Link></Navbar.Brand>
-                                    <Navbar.Brand><Link to='/controlObs' style={{ color: 'var(--secondary)' }}>Obstetricale</Link></Navbar.Brand>
-                                    <Navbar.Brand><Link to='/controlPel' style={{ color: 'var(--secondary)' }}>Pelvienne</Link></Navbar.Brand>
-                                    <Navbar.Brand><Link to='/controlEcho' style={{ color: 'var(--secondary)' }}>EchoGene</Link></Navbar.Brand>
-                                </>
-                            )
-                            }
-
-
-                        </Nav> */}
-                    </Navbar.Collapse>
-                </Container>
-                <Button className='justify-content-end' variant="outline-primary" style={{backgroundColor:"var(--background)", border:"1px solid var(--background)", color:"var(--primary)", fontWeight:"bolder",marginRight:"1rem"}}>Deconnexion</Button>
-
-            </Navbar>
-        </div>
+    //                         <div ></div>
+    //                         <Nav.Link href="/home" className="nav-links">
+    //                             <FontAwesomeIcon
+    //                             icon={faHome}
+    //                             color="var(--primary)"
+    //                             className="nav-icon option"
+    //                             /> 
+    //                             <span>Home</span>
+    //                       </Nav.Link>
+    //                       <Nav.Link href="/home" className="nav-links">
+    //                             <FontAwesomeIcon
+    //                             icon={faFaceSmile}
+    //                             color="var(--primary)"
+    //                             className="nav-icon option"
+    //                             /> 
+    //                             <span>Friends</span>
+    //                       </Nav.Link>
+    //                       <Nav.Link href="/home" className="nav-links">
+    //                             <FontAwesomeIcon
+    //                             icon={faPlayCircle}
+    //                             color="var(--primary)"
+    //                             className="nav-icon option"
+    //                             /> 
+    //                             <span>Streaming</span>
+    //                       </Nav.Link>
+    //                       <Nav.Link href="/home" className="nav-links">
+    //                             <FontAwesomeIcon
+    //                             icon={faUsers}
+    //                             color="var(--primary)"
+    //                             className="nav-icon option"
+    //                             /> 
+    //                             <span>Groups</span>
+    //                       </Nav.Link>
+    //                   </Nav>
+    //                   <Nav className="option-links-container">
+    //                       <Nav.Link href="/" className="nav-links friends" >
+    //                           <span>Meet friends</span>
+    //                       </Nav.Link>
+    //                       <Nav.Link href="/" className="nav-links">
+    //                             <FontAwesomeIcon
+    //                             icon={faRectangleList}
+    //                             color="var(--primary)"
+    //                             className="nav-icon option"
+    //                             /> 
+    //                       </Nav.Link>
+    //                       <Nav.Link href="/" className="nav-links">
+    //                             <FontAwesomeIcon
+    //                             icon={faCommenting}
+    //                             color="var(--primary)"
+    //                             className="nav-icon option"
+    //                             /> 
+    //                       </Nav.Link>
+    //                       <Nav.Link href="/" className="nav-links">
+    //                             <FontAwesomeIcon
+    //                             icon={faBell}
+    //                             color="var(--primary)"
+    //                             className="nav-icon option"
+    //                             /> 
+    //                       </Nav.Link>
+    //                       <Nav.Link href="/" className="nav-links">
+    //                             <FontAwesomeIcon
+    //                             icon={faUser}
+    //                             color="var(--primary)"
+    //                             className="nav-icon option"
+    //                             /> 
+    //                       </Nav.Link>
+    //                   </Nav>
+    //               </Navbar.Collapse>
+    //           </Container>
+    //       </Navbar>
+    //   </div>
     )
 }
 
