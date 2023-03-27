@@ -20,7 +20,9 @@ import {
     faBell,
     faUser,
     faFlag,
-    faShop
+    faShop,
+    
+    faRecordVinyl
 } from '@fortawesome/free-solid-svg-icons'
 import "./style.css"
 

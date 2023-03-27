@@ -1,39 +1,54 @@
+import {
+    faHome,
+    faFaceSmile,
+    faPlayCircle,
+    faFaceLaugh,
+    faRectangleList,
+    faUsers,
+    faSearch,
+    faCommenting,
+    faBell,
+    faUser,
+    faFlag,
+    faShop,
+    faRecordVinyl
+} from '@fortawesome/free-solid-svg-icons'
 
 const navLinks = [
   {
-    path: "/dashboard",
-    icon: "ri-home-2-line",
-    display: "Dashboard",
+    path: "/home",
+    icon: faFaceSmile,
+    display: "Friends",
   },
   {
-    path: "/admin",
-    icon: "ri-shield-user-line",
-    display: "Admin",
+    path: "/home",
+    icon: faRecordVinyl,
+    display: "Records",
   },
   {
-    path: "/client",
-    icon: "ri-user-star-line",
-    display: "Client",
+    path: "/home",
+    icon: faFlag,
+    display: "Pages",
   },
   {
-    path: "/destination",
-    icon: "ri-bus-fill",
-    display: "Destination",
+    path: "/home",
+    icon: faFlag,
+    display: "Most recent",
   },
   {
-    path: "/transaction",
-    icon: "ri-hand-coin-fill",
-    display: "Transaction",
+    path: "/home",
+    icon: faUsers,
+    display: "Groups",
   },
   {
-    path: "/user",
-    icon: "ri-user-follow-line",
-    display: "User",
+    path: "/home",
+    icon: faShop,
+    display: "Marketplace",
   },
   {
-    path: "/settings",
-    icon: "ri-settings-2-line",
-    display: "Settings",
+    path: "/home",
+    icon: faPlayCircle,
+    display: "Watch",
   },
 ];
 

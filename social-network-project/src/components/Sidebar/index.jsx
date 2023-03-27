@@ -1,9 +1,11 @@
 import {React, useState} from "react";
 
 import { NavLink } from "react-router-dom";
-// import navLinks from "../assets/navLinks";
+import navLinks from "../../assets/navLinks";
+import userIcon from "../../assets/images/user.svg"
 import "./style.css";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Sidebar = () => {
     const [navWidth, setNavWidth] = useState([]);
 
@@ -19,42 +21,74 @@ const Sidebar = () => {
       });
   }
   return (
-    <div className="sidebar" style={{ width: navWidth.navwidth }}>
-      <div className="sidebar__top">
-        <h2>
-          <span onClick={closeNav}>
-          </span>{" "}
-          bus-tickets
-        </h2>
-      </div>
-
-      <div className="sidebar__content">
-        <div className="menu">
-          <ul className="nav__list">
-            {/* {navLinks.map((item, index) => (
-              <li className="nav__item" key={index}>
+        <div className="sidebar">
+          <div className="sidebarRow">
+            <img class="user-avatar" src={userIcon} alt="User icon"/>
+            <h4>Username</h4>
+          </div>
+          {navLinks.map((item, index) => (
                 <NavLink
                   to={item.path}
-                  className={(navClass) =>
-                    navClass.isActive ? "nav__active nav__link" : "nav__link"
-                  }
+                  className="sidebarRow" key={index}
                 >
-                  <i className={item.icon}></i>
-
-                  {item.display}
+                  <div className="icon-container">
+                    <FontAwesomeIcon
+                    icon={item.icon}
+                    color="var(--primary)"
+                    className="nav-icons"
+                    /> 
+                  </div>
+                  <div>
+                    <h4>{item.display}</h4>
+                  </div>
                 </NavLink>
-              </li>
-            ))} */}
-          </ul>
-        </div>
+            ))}
 
-        <div className="sidebar__bottom">
-          <span>
-            <i class="ri-logout-circle-r-line"></i> Logout
-          </span>
+          <div className="sidebarRow">
+            <span className="material-icons"> expand_more </span>
+            <h4>More</h4>
+          </div>
         </div>
-      </div>
-    </div>
+    // <div classNameName="sidebar" style={{ width: navWidth.navwidth }}>
+    //   <div classNameName="sidebar__top">
+    //     <h2>
+    //       <span onClick={closeNav}>
+    //       </span>{" "}
+    //       bus-tickets
+    //     </h2>
+    //   </div>
+
+    //   <div classNameName="sidebar__content">
+    //     <div classNameName="menu">
+    //       <ul classNameName="nav__list">
+    //         {navLinks.map((item, index) => (
+    //           <li classNameName="nav__item" key={index}>
+    //             <NavLink
+    //               to={item.path}
+    //               classNameName={(navclassName) =>
+    //                 navclassName.isActive ? "nav__active nav__link" : "nav__link"
+    //               }
+    //             >
+    //               <FontAwesomeIcon
+    //               icon={item.icom}
+    //               color="var(--primary)"
+    //               classNameName="icon"
+    //               />  
+
+    //               {item.display}
+    //             </NavLink>
+    //           </li>
+    //         ))}
+    //       </ul>
+    //     </div>
+
+    //     <div classNameName="sidebar__bottom">
+    //       <span>
+    //         <i className="ri-logout-circle-r-line"></i> Logout
+    //       </span>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 
