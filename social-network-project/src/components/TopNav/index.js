@@ -48,44 +48,48 @@ const TopNav = () => {
             </div>
 
             <div class="header-middle">
-                <div class="header-option active">
+                
+                <Link to="/home" className="header-option active nav-links" >
                     <FontAwesomeIcon
                     icon={faHome}
                     color="var(--primary)"
                     className="nav-icon option"
                     /> 
-                </div>
-                <div class="header-option">
+                </Link>
+                <Link to="/home" class="header-option">
                     <FontAwesomeIcon
                     icon={faPlayCircle}
                     color="var(--primary)"
                     className="nav-icon option"
                     /> 
-                </div>
-                <div class="header-option">
+                </Link>
+                <Link to="/home" class="header-option">
                     <FontAwesomeIcon
                     icon={faShop}
                     color="var(--primary)"
                     className="nav-icon option"
                     /> 
-                </div>
-                <div class="header-option">
+                </Link>
+                <Link to="/groups" class="header-option">
                     <FontAwesomeIcon
                     icon={faUsers}
                     color="var(--primary)"
                     className="nav-icon option"
                     /> 
-                </div>
-                <div class="header-option">
+                </Link>
+                <Link to="/home" class="header-option">
                     <FontAwesomeIcon
                     icon={faFlag}
                     color="var(--primary)"
                     className="nav-icon option"
                     /> 
-                </div>
+                </Link>
             </div>
 
             <div class="header-right">
+                <Link to="/" className="nav-links friends" >
+                    <span>Meet friends</span>
+                </Link>
                 <FontAwesomeIcon
                 icon={faRectangleList}
                 color="var(--primary)"
@@ -105,103 +109,6 @@ const TopNav = () => {
                 </div>
             </div>
             </div>
-    //     <div className="navbar">
-    //         <Navbar sticky='top' expand="md" className="navbar-back-layer" >
-    //             <Container className="navbar-container">
-    //                 <Navbar.Brand className="utility">
-    //                     <div className="utility-items">
-    //                             <img src={logo} alt="Logo" className="logo-icon" style={{height:"3rem"}} />
-                                
-    //                             {/* <FontAwesomeIcon
-    //                             icon={faFacebook}
-    //                             color="var(--primary)"
-    //                             className="logo-icon"
-    //                             />   */}
-    //                             <div class="search-input">
-    //                                 <FontAwesomeIcon
-    //                                 icon={faSearch}
-    //                                 color="var(--primary)"
-    //                                 className="icon"
-    //                                 />  
-    //                                 <input type="text" placeholder="Search on Friendly"/>
-    //                             </div>
-    //                     </div>
-    //                 </Navbar.Brand>
-    //                 <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-dark"/>
-    //                 <Navbar.Collapse className='justify-content-end links-container'  id="basic-navbar-nav">
-    //                     <Nav className="me-auto nav-links-container">
-
-    //                         <div ></div>
-    //                         <Nav.Link href="/home" className="nav-links">
-    //                             <FontAwesomeIcon
-    //                             icon={faHome}
-    //                             color="var(--primary)"
-    //                             className="nav-icon option"
-    //                             /> 
-    //                             <span>Home</span>
-    //                       </Nav.Link>
-    //                       <Nav.Link href="/home" className="nav-links">
-    //                             <FontAwesomeIcon
-    //                             icon={faFaceSmile}
-    //                             color="var(--primary)"
-    //                             className="nav-icon option"
-    //                             /> 
-    //                             <span>Friends</span>
-    //                       </Nav.Link>
-    //                       <Nav.Link href="/home" className="nav-links">
-    //                             <FontAwesomeIcon
-    //                             icon={faPlayCircle}
-    //                             color="var(--primary)"
-    //                             className="nav-icon option"
-    //                             /> 
-    //                             <span>Streaming</span>
-    //                       </Nav.Link>
-    //                       <Nav.Link href="/home" className="nav-links">
-    //                             <FontAwesomeIcon
-    //                             icon={faUsers}
-    //                             color="var(--primary)"
-    //                             className="nav-icon option"
-    //                             /> 
-    //                             <span>Groups</span>
-    //                       </Nav.Link>
-    //                   </Nav>
-    //                   <Nav className="option-links-container">
-    //                       <Nav.Link href="/" className="nav-links friends" >
-    //                           <span>Meet friends</span>
-    //                       </Nav.Link>
-    //                       <Nav.Link href="/" className="nav-links">
-    //                             <FontAwesomeIcon
-    //                             icon={faRectangleList}
-    //                             color="var(--primary)"
-    //                             className="nav-icon option"
-    //                             /> 
-    //                       </Nav.Link>
-    //                       <Nav.Link href="/" className="nav-links">
-    //                             <FontAwesomeIcon
-    //                             icon={faCommenting}
-    //                             color="var(--primary)"
-    //                             className="nav-icon option"
-    //                             /> 
-    //                       </Nav.Link>
-    //                       <Nav.Link href="/" className="nav-links">
-    //                             <FontAwesomeIcon
-    //                             icon={faBell}
-    //                             color="var(--primary)"
-    //                             className="nav-icon option"
-    //                             /> 
-    //                       </Nav.Link>
-    //                       <Nav.Link href="/" className="nav-links">
-    //                             <FontAwesomeIcon
-    //                             icon={faUser}
-    //                             color="var(--primary)"
-    //                             className="nav-icon option"
-    //                             /> 
-    //                       </Nav.Link>
-    //                   </Nav>
-    //               </Navbar.Collapse>
-    //           </Container>
-    //       </Navbar>
-    //   </div>
     )
 }
 

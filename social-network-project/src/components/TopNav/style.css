@@ -1,3 +1,11 @@
+.nav-links{
+    text-decoration: none;
+    color: var(--primary);
+}
+.nav-links:hover{
+    text-decoration: none;
+    color: var(--primary);
+}
 .header {
     padding: 15px 20px;
     display: flex;
@@ -103,6 +111,12 @@ width: 2.5rem;
 
 .profile-info h4 {
     margin-left: 10px;
+}
+.friends{
+    background-color: var(--secondary-diluted);
+    padding: 0.4rem 0rem; 
+    font-weight: bold;
+    width: 7rem;
 }
 
 
