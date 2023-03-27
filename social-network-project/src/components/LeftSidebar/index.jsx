@@ -6,7 +6,7 @@ import userIcon from "../../assets/images/user.svg"
 import "./style.css";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-const Sidebar = () => {
+const LeftSidebar = () => {
     const [navWidth, setNavWidth] = useState([]);
 
     const openNav = () => {
@@ -92,4 +92,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default LeftSidebar;

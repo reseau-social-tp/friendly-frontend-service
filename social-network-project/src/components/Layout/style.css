@@ -1,4 +1,7 @@
-
+.layout{
+    width: 100vw;
+    background-color: var(--secondary-diluted);
+}
 .main {
     display: flex;
 }

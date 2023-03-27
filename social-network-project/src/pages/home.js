@@ -3,6 +3,15 @@ import toko from "../assets/images/toko.jpg"
 import pat from "../assets/images/pat.jpg"
 import parfait from "../assets/images/parfait.jpg"
 import userIcon from "../assets/images/user.svg"
+import {
+    faThumbsUp,
+    faMessage,
+    faShare,
+    faVideoCamera,
+    faPhotoVideo,
+    faFaceLaughBeam
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Home(props) {
 
@@ -12,23 +21,47 @@ export default function Home(props) {
             <div className="storyReel">
                 <div style={{backgroundImage:`url(${toko})`}} className="story" >
                     <img
-                        className="user__avatar story__avatar"
+                        className="user-avatar story-avatar"
                         src={userIcon}
                         alt=""
                     />
-                    <h4>Somanath Goudar</h4>
+                    <h4>Toko Ekambi</h4>
                 </div>
-                <div style={{backgroundImage:`url(${pat})`}} className="story" >
+                <div style={{backgroundImage:`url(${toko})`}} className="story" >
                     <img
-                        className="user__avatar story__avatar"
+                        className="user-avatar story-avatar"
                         src={userIcon}
                         alt=""
                     />
-                    <h4>Somanath Goudar</h4>
+                    <h4>Toko Ekambi</h4>
+                </div>
+                <div style={{backgroundImage:`url(${toko})`}} className="story" >
+                    <img
+                        className="user-avatar story-avatar"
+                        src={userIcon}
+                        alt=""
+                    />
+                    <h4>Toko Ekambi</h4>
+                </div>
+                <div style={{backgroundImage:`url(${toko})`}} className="story" >
+                    <img
+                        className="user-avatar story-avatar"
+                        src={userIcon}
+                        alt=""
+                    />
+                    <h4>Toko Ekambi</h4>
                 </div>
                 <div style={{backgroundImage:`url(${pat})`}} className="story" >
                     <img
-                        className="user__avatar story__avatar"
+                        className="user-avatar story-avatar"
+                        src={userIcon}
+                        alt=""
+                    />
+                    <h4>Pat</h4>
+                </div>
+                <div style={{backgroundImage:`url(${pat})`}} className="story" >
+                    <img
+                        className="user-avatar story-avatar"
                         src={userIcon}
                         alt=""
                     />
@@ -36,7 +69,7 @@ export default function Home(props) {
                 </div>
                 <div style={{backgroundImage:`url(${toko})`}} className="story" >
                     <img
-                        className="user__avatar story__avatar"
+                        className="user-avatar story-avatar"
                         src={userIcon}
                         alt=""
                     />
@@ -44,15 +77,15 @@ export default function Home(props) {
                 </div>
                 <div style={{backgroundImage:`url(${parfait})`}} className="story" >
                     <img
-                        className="user__avatar story__avatar"
+                        className="user-avatar story-avatar"
                         src={userIcon}
                         alt=""
                     />
-                    <h4>Somanath Goudar</h4>
+                    <h4>Parfait</h4>
                 </div>
                 <div style={{backgroundImage:`url(${toko})`}} className="story" >
                     <img
-                        className="user__avatar story__avatar"
+                        className="user-avatar story-avatar"
                         src={userIcon}
                         alt=""
                     />
@@ -65,7 +98,7 @@ export default function Home(props) {
         <div className="messageSender">
             <div className="messageSender__top">
             <img
-                className="user__avatar story__avatar"
+                className="user-avatar story-avatar"
                 src={userIcon}
                 alt=""
             />
@@ -76,17 +109,29 @@ export default function Home(props) {
 
             <div className="messageSender__bottom">
             <div className="messageSender__option">
-                <span style={{color: "red"}} className="material-icons"> videocam </span>
+                <FontAwesomeIcon
+                icon={faVideoCamera}
+                color="red"
+                className="icon"
+                />  
                 <h3>Live</h3>
             </div>
 
             <div className="messageSender__option">
-                <span style={{color: "green"}} className="material-icons"> photo_library </span>
+                <FontAwesomeIcon
+                icon={faPhotoVideo}
+                color="green"
+                className="icon"
+                />  
                 <h3>Photo</h3>
             </div>
 
             <div className="messageSender__option">
-                <span style={{color: "orange"}} className="material-icons"> insert_emoticon </span>
+                <FontAwesomeIcon
+                icon={faFaceLaughBeam}
+                color="orange"
+                className="icon"
+                />  
                 <h3>Feeling</h3>
             </div>
             </div>
@@ -97,7 +142,7 @@ export default function Home(props) {
         <div className="post">
             <div className="post__top">
             <img
-                className="user__avatar story__avatar"
+                className="user-avatar story-avatar"
                 src={userIcon}
                 alt=""
             />
@@ -113,24 +158,36 @@ export default function Home(props) {
 
             <div className="post__image">
             <img
-                src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2Fyc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+                src={toko}
                 alt=""
             />
             </div>
 
             <div className="post__options">
             <div className="post__option">
-                <span className="material-icons"> thumb_up </span>
+                <FontAwesomeIcon
+                icon={faThumbsUp}
+                color="gray"
+                className="icon"
+                />  
                 <p>Like</p>
             </div>
 
             <div className="post__option">
-                <span className="material-icons"> chat_bubble_outline </span>
+                <FontAwesomeIcon
+                icon={faMessage}
+                color="gray"
+                className="icon"
+                /> 
                 <p>Comment</p>
             </div>
 
             <div className="post__option">
-                <span className="material-icons"> near_me </span>
+                <FontAwesomeIcon
+                icon={faShare}
+                color="gray"
+                className="icon"
+                /> 
                 <p>Share</p>
             </div>
             </div>
@@ -139,7 +196,7 @@ export default function Home(props) {
         <div className="post">
             <div className="post__top">
             <img
-                className="user__avatar story__avatar"
+                className="user-avatar story-avatar"
                 src={userIcon}
                 alt=""
             />
@@ -174,7 +231,7 @@ export default function Home(props) {
         <div className="post">
             <div className="post__top">
             <img
-                className="user__avatar story__avatar"
+                className="user-avatar story-avatar"
                 src={userIcon}
                 alt=""
             />

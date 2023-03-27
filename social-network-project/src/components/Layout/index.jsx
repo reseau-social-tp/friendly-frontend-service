@@ -1,5 +1,6 @@
 import {React, Outlet, Link} from "react-router-dom";
-import Sidebar from "../Sidebar";
+import LeftSidebar from "../LeftSidebar";
+import RightSidebar from "../RightSidebar";
 import TopNav from "../TopNav"
 import "./style.css"
 const Layout = () => {
@@ -8,8 +9,9 @@ const Layout = () => {
     <div className="layout">
       <TopNav/>
       <div className="main">
-        <Sidebar/>
+        <LeftSidebar/>
         <Outlet/>
+        <RightSidebar/>
       </div>
     </div>
   );
