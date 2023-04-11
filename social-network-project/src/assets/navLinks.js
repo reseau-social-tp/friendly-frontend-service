@@ -1,5 +1,5 @@
 import {
-    faHome,
+    faHeart,
     faFaceSmile,
     faPlayCircle,
     faFaceLaugh,
@@ -19,11 +19,13 @@ const navLinks = [
     path: "/home",
     icon: faFaceSmile,
     display: "Friends",
+    color:"orange"
   },
   {
     path: "/home",
     icon: faRecordVinyl,
     display: "Records",
+    color:"red"
   },
   {
     path: "/home",
@@ -34,21 +36,30 @@ const navLinks = [
     path: "/home",
     icon: faFlag,
     display: "Most recent",
+    color:"var(--primary)"
   },
   {
     path: "/home",
     icon: faUsers,
     display: "Groups",
+    color:"var(--primary)"
   },
   {
     path: "/home",
     icon: faShop,
     display: "Marketplace",
+    color:"var(--primary)"
   },
   {
     path: "/home",
     icon: faPlayCircle,
     display: "Watch",
+  },
+  {
+    path: "/home",
+    icon: faHeart,
+    display: "Donate",
+    color:"red"
   },
 ];
 

@@ -34,7 +34,7 @@ const LeftSidebar = () => {
                   <div className="icon-container">
                     <FontAwesomeIcon
                     icon={item.icon}
-                    color="var(--primary)"
+                    color={item.color}
                     className="nav-icons"
                     /> 
                   </div>

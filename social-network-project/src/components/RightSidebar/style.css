@@ -1,9 +1,9 @@
 /* sidebar  */
 
-.sidebar {
+/* .sidebar {
   padding: 25px 10px;
   flex: 0.33;
-}  
+}   */
 .sidebarRow {
   display: flex;
   align-items: center;
@@ -37,11 +37,11 @@
   font-size: 1rem;
   color:black;
 }
-
+/* 
 .sidebarRow .nav-icons {
   font-size: x-large;
   color: #2e81f4;
-}
+} */
 
 
 @media (max-width: 768px) {

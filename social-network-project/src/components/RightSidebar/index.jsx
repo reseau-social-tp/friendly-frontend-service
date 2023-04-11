@@ -21,15 +21,15 @@ const LeftSidebar = () => {
       });
   }
   return (
-        <div className="sidebar">
-          <div className="sidebarRow">
+        <div className="r-sidebar">
+          <div className="r-sidebarRow">
             <img class="user-avatar" src={userIcon} alt="User icon"/>
             <h4>Username</h4>
           </div>
           {navLinks.map((item, index) => (
                 <NavLink
                   to={item.path}
-                  className="sidebarRow" key={index}
+                  className="r-sidebarRow" key={index}
                 >
                   <div className="icon-container">
                     <FontAwesomeIcon
@@ -44,7 +44,7 @@ const LeftSidebar = () => {
                 </NavLink>
             ))}
 
-          <div className="sidebarRow">
+          <div className="r-sidebarRow">
             <span className="material-icons"> expand_more </span>
             <h4>More</h4>
           </div>
