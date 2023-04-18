@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {Container, Nav, Navbar} from 'react-bootstrap';
-import "./style.css"
 import logo from "../../assets/images/logo2.png"
 import userIcon from "../../assets/images/user.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,7 +23,6 @@ import {
     
     faRecordVinyl
 } from '@fortawesome/free-solid-svg-icons'
-import "./style.css"
 
 const TopNav = () => {
     // let user = ''
