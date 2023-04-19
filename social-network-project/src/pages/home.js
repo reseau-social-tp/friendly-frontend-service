@@ -1,17 +1,7 @@
 import '../styles/home.css';
 import { Box, useMediaQuery } from "@mui/material";
-import toko from "../assets/images/toko.jpg"
+import userDefault from "../assets/images/user_default.png"
 import pat from "../assets/images/pat.jpg"
-import parfait from "../assets/images/parfait.jpg"
-import {
-    faThumbsUp,
-    faMessage,
-    faShare,
-    faVideoCamera,
-    faPhotoVideo,
-    faFaceLaughBeam
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import UserWidget from "../components/widgets/UserWidget";
 import MyPostWidget from "../components/widgets/MyPostWidget";
@@ -36,8 +26,8 @@ export default function Home(props) {
             flexBasis={isNonMobileScreens ? "42%" : undefined}
             mt={isNonMobileScreens ? undefined : "2rem"}
             >
-            <MyPostWidget picturePath={pat} />
-            <PostsWidget userId={_id} />
+                <MyPostWidget picturePath={userDefault} />
+                <PostsWidget userId={_id} />
             </Box>
             {isNonMobileScreens && (
             <Box flexBasis="26%">

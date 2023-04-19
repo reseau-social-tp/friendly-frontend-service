@@ -9,19 +9,14 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import {
     faHome,
-    faFaceSmile,
     faPlayCircle,
-    faFaceLaugh,
     faRectangleList,
     faUsers,
     faSearch,
     faCommenting,
     faBell,
-    faUser,
     faFlag,
     faShop,
-    
-    faRecordVinyl
 } from '@fortawesome/free-solid-svg-icons'
 
 const TopNav = () => {

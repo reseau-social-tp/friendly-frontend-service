@@ -20,10 +20,9 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     {_id:6,name:"Jordan" },
     {_id:7,name:"Beerus" },]
 
-  const primaryLight = "var(--secondary)";
-  const primaryDark = "var(--primary)";
-  const main = "var(--secondary-diluted)";
-  const medium = "red";
+  const primary = "var(--primary)";
+  const secondary = "var(--secondary)";
+  const secondaryDiluted = "var(--secondary-diluted)";
 
   const isFriend = friends.find((friend) => friend._id === friendId);
 
@@ -53,31 +52,31 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
           }}
         >
           <Typography
-            color={main}
-            variant="h5"
+            color="black"
+            variant="h7"
             fontWeight="500"
             sx={{
               "&:hover": {
-                color: "yellow",
+                color: primary,
                 cursor: "pointer",
               },
             }}
           >
             {name}
           </Typography>
-          <Typography color={medium} fontSize="0.75rem">
+          <Typography color={primary} fontSize="0.75rem">
             {subtitle}
           </Typography>
         </Box>
       </FlexBetween>
       <IconButton
         // onClick={() => patchFriend()}
-        sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
-      >
+        sx={{ backgroundColor: secondaryDiluted, p: "0.6rem" }}
+        >
         {isFriend ? (
-          <PersonRemoveOutlined sx={{ color: primaryDark }} />
+          <PersonRemoveOutlined sx={{ color: "red" }} />
         ) : (
-          <PersonAddOutlined sx={{ color: primaryDark }} />
+          <PersonAddOutlined sx={{ color: primary }} />
         )}
       </IconButton>
     </FlexBetween>

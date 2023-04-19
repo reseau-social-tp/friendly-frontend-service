@@ -11,7 +11,7 @@ import WidgetWrapper from "../WidgetWrapper";
 import { useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { setPost } from "state";
-import img from "../../assets/images/toko.jpg"
+import img from "../../assets/images/user_default.png"
 
 const PostWidget = ({
   postId,

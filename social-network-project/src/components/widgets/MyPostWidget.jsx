@@ -1,18 +1,16 @@
 import {
   EditOutlined,
   DeleteOutlined,
-  AttachFileOutlined,
-  GifBoxOutlined,
   ImageOutlined,
   MicOutlined,
-  MoreHorizOutlined,
+  VideoFileOutlined
+
 } from "@mui/icons-material";
 import {
   Box,
   Divider,
   Typography,
   InputBase,
-  useTheme,
   Button,
   IconButton,
   useMediaQuery,
@@ -33,8 +31,8 @@ const MyPostWidget = ({ picturePath }) => {
   // const { _id } = useSelector((state) => state.user);
   // const token = useSelector((state) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-  const mediumMain = "var(--primary)";
-  const medium = "var(--secondary)";
+  const primary = "var(--primary)";
+  const secondary = "var(--secondary)";
 
   // const handlePost = async () => {
   //   const formData = new FormData();
@@ -66,7 +64,8 @@ const MyPostWidget = ({ picturePath }) => {
           value={post}
           sx={{
             width: "100%",
-            backgroundColor: "var(--secondary)",
+            backgroundColor: "var(--secondary-diluted)",
+            color:"var(--black)",
             borderRadius: "2rem",
             padding: "1rem 2rem",
           }}
@@ -74,7 +73,7 @@ const MyPostWidget = ({ picturePath }) => {
       </FlexBetween>
       {isImage && (
         <Box
-          border={`1px solid ${medium}`}
+          border={`1px solid ${secondary}`}
           borderRadius="5px"
           mt="1rem"
           p="1rem"
@@ -95,7 +94,7 @@ const MyPostWidget = ({ picturePath }) => {
                 >
                   <input {...getInputProps()} />
                   {!image ? (
-                    <p>Add Image Here</p>
+                    <p style={{color:"var(--primary)"}}>Add Image Here</p>
                   ) : (
                     <FlexBetween>
                       <Typography>{image.name}</Typography>
@@ -120,46 +119,58 @@ const MyPostWidget = ({ picturePath }) => {
       <Divider sx={{ margin: "1.25rem 0" }} />
 
       <FlexBetween>
-        <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
-          <ImageOutlined sx={{ color: mediumMain }} />
-          <Typography
-            color={mediumMain}
-            sx={{ "&:hover": { cursor: "pointer", color: medium } }}
-          >
-            Image
-          </Typography>
-        </FlexBetween>
 
         {isNonMobileScreens ? (
           <>
-            <FlexBetween gap="0.25rem">
-              <GifBoxOutlined sx={{ color: mediumMain }} />
-              <Typography color={mediumMain}>Clip</Typography>
+            <FlexBetween gap="0.25rem"  backgroundColor="rgb(223, 223, 223)" width="7rem" height="2rem" borderRadius="5rem" style={{justifyContent:"center"}} onClick={() => setIsImage(!isImage)}
+                sx={{ color: "black", "&:hover": { cursor: "pointer", color: primary } }}>
+              <ImageOutlined/>
+              <Typography>Image</Typography>
             </FlexBetween>
 
-            <FlexBetween gap="0.25rem">
-              <AttachFileOutlined sx={{ color: mediumMain }} />
-              <Typography color={mediumMain}>Attachment</Typography>
+            <FlexBetween gap="0.25rem" backgroundColor="rgb(223, 223, 223)" width="7rem" height="2rem" borderRadius="5rem" style={{justifyContent:"center"}}
+                sx={{ color: "black", "&:hover": { cursor: "pointer", color: primary } }}>
+              <VideoFileOutlined />
+              <Typography>Video</Typography>
             </FlexBetween>
 
-            <FlexBetween gap="0.25rem">
-              <MicOutlined sx={{ color: mediumMain }} />
-              <Typography color={mediumMain}>Audio</Typography>
+            <FlexBetween gap="0.25rem"  backgroundColor="rgb(223, 223, 223)" width="7rem" height="2rem" borderRadius="5rem" style={{justifyContent:"center"}}
+                sx={{ color: "black", "&:hover": { cursor: "pointer", color: primary } }}>
+              <MicOutlined />
+              <Typography>Audio</Typography>
             </FlexBetween>
           </>
         ) : (
-          <FlexBetween gap="0.25rem">
-            <MoreHorizOutlined sx={{ color: mediumMain }} />
-          </FlexBetween>
+          <>
+            <FlexBetween gap="0.25rem"  backgroundColor="rgb(223, 223, 223)" width="4rem" height="2rem" borderRadius="5rem" style={{justifyContent:"center"}} onClick={() => setIsImage(!isImage)}
+                sx={{ color: "black", "&:hover": { cursor: "pointer", color: primary } }}>
+              <ImageOutlined/>
+              <Typography>Img.</Typography>
+            </FlexBetween>
+            
+            <FlexBetween gap="0.25rem"  backgroundColor="rgb(223, 223, 223)" width="4rem" height="2rem" borderRadius="5rem" style={{justifyContent:"center"}}
+                sx={{ color: "black", "&:hover": { cursor: "pointer", color: primary } }}>
+              <VideoFileOutlined/>
+              <Typography>Vid.</Typography>
+            </FlexBetween>
+
+            <FlexBetween gap="0.25rem"  backgroundColor="rgb(223, 223, 223)" width="4rem" height="2rem" borderRadius="5rem" style={{justifyContent:"center"}}
+                sx={{ color: "black", "&:hover": { cursor: "pointer", color: primary } }}>
+              <MicOutlined/>
+              <Typography>Aud.</Typography>
+            </FlexBetween>
+          </>
         )}
 
         <Button
           disabled={!post}
           // onClick={handlePost}
-          sx={{
-            color: "black",
+          style={{
+            color: "white",
             backgroundColor: "var(--primary)",
             borderRadius: "3rem",
+            width:"5rem",
+            cursor:"pointer"
           }}
         >
           POST
