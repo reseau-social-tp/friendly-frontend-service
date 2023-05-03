@@ -3,15 +3,15 @@ import {
   FavoriteBorderOutlined,
   FavoriteOutlined,
   ShareOutlined,
+  ShareSharp
 } from "@mui/icons-material";
-import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Divider, IconButton, Typography, useTheme, useMediaQuery } from "@mui/material";
 import FlexBetween from "../FlexBetween";
 import Friend from "../Friend";
 import WidgetWrapper from "../WidgetWrapper";
 import { useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { setPost } from "state";
-import img from "../../assets/images/user_default.png"
 
 const PostWidget = ({
   postId,
@@ -24,17 +24,19 @@ const PostWidget = ({
   likes,
   comments,
 }) => {
-  const [isComments, setIsComments] = useState(false);
+  const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
+  const [isComments, setIsComments] = useState(true);
   // const dispatch = useDispatch();
   // const token = useSelector((state) => state.token);
   // const loggedInUserId = useSelector((state) => state.user._id);
   // const isLiked = Boolean(likes[loggedInUserId]);
   const isLiked = true
+  const isShared = true
   const likeCount = Object.keys(likes).length;
 
   const main = "black";
   const primary = "var(--primary)";
-  const medium = "var(--secondary)";
+  const secondary = "var(--secondary)";
 
   // const patchLike = async () => {
   //   const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
@@ -57,7 +59,7 @@ const PostWidget = ({
         subtitle={location}
         userPicturePath={userPicturePath}
       />
-      <Typography color={main} sx={{ mt: "1rem" }}>
+      <Typography color={main} sx={{ mt: "1rem", p:"0.2rem 0.8rem", borderRadius:"5rem", backgroundColor:"var(--secondary-diluted)",textAlign:"start" }}>
         {description}
       </Typography>
       {picturePath && (
@@ -66,19 +68,25 @@ const PostWidget = ({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={img}
+          src={picturePath}
         />
       )}
-      <FlexBetween mt="0.25rem">
-        <FlexBetween gap="1rem">
+      <FlexBetween mt="0.5rem">
+        <FlexBetween gap="2rem">
           <FlexBetween gap="0.3rem">
             <IconButton 
             // onClick={patchLike}
             >
               {isLiked ? (
-                <FavoriteOutlined sx={{ color: primary }} />
+                <>
+                  <FavoriteOutlined sx={{ color: primary }} />
+                  <Typography sx={{ color: primary }}>Liked</Typography>
+                </>
               ) : (
-                <FavoriteBorderOutlined />
+                <>
+                  <FavoriteBorderOutlined />
+                  <Typography>Like</Typography>
+                </>
               )}
             </IconButton>
             <Typography>{likeCount}</Typography>
@@ -87,14 +95,23 @@ const PostWidget = ({
           <FlexBetween gap="0.3rem">
             <IconButton onClick={() => setIsComments(!isComments)}>
               <ChatBubbleOutlineOutlined />
+              <Typography>Comment</Typography>
             </IconButton>
             <Typography>{comments.length}</Typography>
           </FlexBetween>
+          <FlexBetween>
+            {isShared?
+            <IconButton>
+              <ShareSharp sx={{ color: primary }}/>
+              <Typography sx={{ color: primary }}>Shared</Typography>
+            </IconButton>:
+            <IconButton>
+              <ShareOutlined />
+              <Typography>Share</Typography>
+            </IconButton>
+            }
+          </FlexBetween>
         </FlexBetween>
-
-        <IconButton>
-          <ShareOutlined />
-        </IconButton>
       </FlexBetween>
       {isComments && (
         <Box mt="0.5rem">

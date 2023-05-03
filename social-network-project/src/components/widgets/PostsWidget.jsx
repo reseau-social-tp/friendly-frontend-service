@@ -3,6 +3,7 @@ import { useEffect } from "react";
 // import { setPosts } from "state";
 import PostWidget from "./PostWidget";
 import img from "../../assets/images/user_default.png"
+import img2 from "../../assets/images/network-1.jpg"
 
 const PostsWidget = ({ userId, isProfile = false }) => {
   // const dispatch = useDispatch();
@@ -13,10 +14,10 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       name:"A",
       description:"ASASASAS",
       location:"Yaounde",
-      picturePath:img,
-      userPicturePath:img,
+      picturePath:img2,
+      userPicturePath:img2,
       likes:20,
-      comments:[],
+      comments:["Hi man","Ustanak","Hello nigga","Chipmunk"]
     },
     {
       _id:2,
@@ -24,8 +25,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       name:"A",
       description:"Here in town",
       location:"Douala",
-      picturePath:img,
-      userPicturePath:img,
+      picturePath:img2,
+      userPicturePath:img2,
       likes:1120,
       comments:[],
     },

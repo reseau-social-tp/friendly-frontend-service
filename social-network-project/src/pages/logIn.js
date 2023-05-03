@@ -101,7 +101,7 @@ export default function UserLogIn() {
 
     return (
         <div className='main-c'>
-            <Descriptor intro="Nice to see you again"  welcome={<p className='welcome'>Welcome back to <span style={{color:"var(--secondary)"}}>friendly</span></p>} encourager={<p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>}/>
+            <Descriptor intro="Nice to see you again"  welcome={<p className='welcome'>Welcome back to <span style={{color:"var(--hero-highlight)"}}>friendly</span></p>} encourager={<p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>}/>
             
             <div className="recorder-c">
                 

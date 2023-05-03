@@ -1,9 +1,12 @@
 
 :root{
   /* theme */
-  --primary: #317773;
-  --secondary: #CBD18F;
+  --primary: #900d09;
+  --primary-diluted: #0000004b;
+  --secondary: #317773;
+  --hero-highlight: #ecbe5e;
   --secondary-diluted:#ccd18f48;
+  --transition: all 0.4s ease-in-out;
   --black: #000;
   --white: #fff;
 
