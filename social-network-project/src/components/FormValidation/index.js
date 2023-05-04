@@ -15,7 +15,7 @@ export default function FormValidation(props) {
             </div>
             <Button handler={props.submitHandler} class="primary" label={props.primaryLabel}/>
             <div className="secondary-container">
-                <p>{props.secondaryMessage}</p>
+                <p style={{marginTop:"1rem!important",height:"100%",display:"flex",alignItems:"center"}}>{props.secondaryMessage}</p>
                 <Button handler={props.abortHandler} class="secondary" label={props.secondaryLabel}/>
             </div>
         </div>

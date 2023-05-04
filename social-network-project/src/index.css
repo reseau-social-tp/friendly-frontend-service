@@ -2,10 +2,12 @@
 :root{
   /* theme */
   --primary: #900d09;
-  --primary-diluted: #0000004b;
+  --primary-diluted: #900d0920;
   --secondary: #317773;
   --secondary-diluted:#31777317;
+
   --hero-highlight: #ecbe5e;
+  --hero-filter: #0000004b;
   --transition: all 0.4s ease-in-out;
   --black: #000;
   --white: #fff;

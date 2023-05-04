@@ -30,11 +30,6 @@ const HomeSidebar = () => {
                   </div>
                 </NavLink>
             ))}
-
-          <div className="sidebarRow">
-            <span className="material-icons"> expand_more </span>
-            <h4>More</h4>
-          </div>
         </div>
   );
 };

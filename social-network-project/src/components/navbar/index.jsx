@@ -1,5 +1,6 @@
 import React,{ useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import navLinks from "../../assets/navLinks";
 import {
   Box,
   IconButton,
@@ -83,11 +84,11 @@ const Navbar = () => {
                 icon={faHome}
                 color="var(--primary)"
                 className="nav-icon option"
-                style={{ fontSize: "1.5rem", padding:"0 0.5rem" }} 
+                style={{ fontSize: "1.5rem", padding:"0.5rem" }} 
                 /> 
             </Link>
-            <ChatSharp sx={{ fontSize: "2rem", color: "var(--primary)" }} className="nav-icon option"/>
-            <Notifications sx={{ fontSize: "2rem",color: "var(--primary)" }} className="nav-icon option"/>
+            <ChatSharp style={{ fontSize: "3rem", color: "var(--primary)" }} className="nav-icon option"/>
+            <Notifications style={{ fontSize: "3rem",color: "var(--primary)" }} className="nav-icon option"/>
             <FormControl variant="standard" value={fullName} 
               style={{display:"flex",flexDirection:"row"}}>
               
@@ -119,11 +120,15 @@ const Navbar = () => {
           </FlexBetween>
         </>
       ) : (
-        <IconButton
-          onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
-        >
-          <Menu />
-        </IconButton>
+        <FlexBetween gap="1rem">
+          <ChatSharp sx={{ fontSize: "3rem", color: "var(--primary)" }} className="nav-icon option"/>
+          <Notifications sx={{ fontSize: "3rem",color: "var(--primary)" }} className="nav-icon option"/>
+          <IconButton
+            onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
+          >
+            <Menu />
+          </IconButton>
+        </FlexBetween>
       )}
 
       {/* MOBILE NAV */}
@@ -153,51 +158,25 @@ const Navbar = () => {
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            gap="3rem"
+            gap="1rem"
           >
-            <IconButton
-              
-              sx={{ fontSize: "25px" }}
-            >
-            </IconButton>
-            <Typography 
-              sx={{
-                backgroundColor:"var(--secondary-diluted)", 
-                cursor:"pointer",
-                padding: "0.4rem 0rem", 
-                fontWeight: "bold",
-                width: "7rem",
-              }}>Meet friends</Typography>
-            <ChatSharp sx={{ fontSize: "2rem", color: "gray" }} className="nav-icon option"/>
-            <Notifications sx={{ fontSize: "2rem",color: "gray" }} className="nav-icon option"/>
-            <FormControl variant="standard" value={fullName} 
-              style={{display:"flex",flexDirection:"row"}}>
-
-              <div class="profile-info">
-                  <img class="user-avatar" src={userIcon} alt="User icon"/>
-              </div>
-              <Select
-                sx={{
-                  backgroundColor: "white",
-                  width: "50px",
-                  borderRadius: "0.25rem",
-                  p: "0.25rem 1rem",
-                  "& .MuiSvgIcon-root": {
-                    pr: "0.25rem",
-                    width: "3rem",
-                  },
-                  "& .MuiSelect-select:focus": {
-                    backgroundColor: "white",
-                  },
-                }}
-                input={<InputBase />}
-              >
-                <MenuItem value={fullName}>
-                  <Typography>{fullName}</Typography>
-                </MenuItem>
-                <MenuItem>Log Out</MenuItem>
-              </Select>
-            </FormControl>
+            {navLinks.map((item, index) => (
+                  <NavLink
+                    to={item.path}
+                    className="navbarRow" key={index}
+                  >
+                    <div className="icon-container">
+                      <FontAwesomeIcon
+                      icon={item.icon}
+                      color={item.color}
+                      className="nav-icons"
+                      /> 
+                    </div>
+                    <div>
+                      <h4>{item.display}</h4>
+                    </div>
+                  </NavLink>
+              ))}
           </FlexBetween>
         </Box>
       )}

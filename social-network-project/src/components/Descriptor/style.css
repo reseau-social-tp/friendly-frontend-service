@@ -10,7 +10,7 @@ div.descriptor{
 
 }
 div.normalizer{
-    background: var(--primary-diluted);
+    background: var(--hero-filter);
     width: 100%;
     height: 100%;
     display:flex;
