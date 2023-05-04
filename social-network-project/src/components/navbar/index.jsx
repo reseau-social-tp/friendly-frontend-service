@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import {
   Search,
-  Message,
+  ChatSharp,
   Notifications,
   Menu,
   Close,
@@ -21,13 +21,8 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-    faHome,
-    faPlayCircle,
-    faUsers,
-    faFlag,
-    faShop,
+    faHome
 } from '@fortawesome/free-solid-svg-icons'
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "../FlexBetween";
 import logo from "../../assets/images/logo2.png"
@@ -44,13 +39,12 @@ const Navbar = () => {
   return (
     <FlexBetween padding="1rem 6%" class="header" backgroundColor={"white"}>
       <FlexBetween gap="1.75rem" class="header-left">
-        <img src={logo} alt="Logo" className="logo-icon" style={{height:"3rem"}} />
+        <Link><img src={logo} alt="Logo" className="logo-icon" style={{height:"2.5rem", padding:"0 1rem"}} /></Link>
         {isNonMobileScreens ?
           <FlexBetween
-            class="header-input"
-            borderRadius="2rem"
-            gap="3rem"
-            padding="0.1rem 0.5rem"
+            borderRadius="0.5rem"
+            gap="1rem"
+            padding="0rem 0.5rem"
             marginLeft="1rem"
             backgroundColor="var(--secondary-diluted)"
           >
@@ -60,10 +54,9 @@ const Navbar = () => {
             </IconButton>
           </FlexBetween>:
           <FlexBetween
-            class="header-input"
-            borderRadius="9px"
-            gap="2rem"
-            padding="0.1rem 1.5rem"
+            borderRadius="0.5rem"
+            gap="1rem"
+            padding="0.5rem 0.5rem"
           >
             <IconButton>
               <Search />
@@ -75,59 +68,31 @@ const Navbar = () => {
       {/* DESKTOP NAV */}
       {isNonMobileScreens ? (
         <>
-          <FlexBetween gap="2rem" sx={{padding:"0 0.5rem"}}>
-            
-                <Link to="/home" >
-                    <FontAwesomeIcon
-                    icon={faHome}
-                    color="var(--primary)"
-                    className="nav-icon option"
-                    style={{ fontSize: "1.5rem", padding:"0 0.5rem" }} 
-                    /> 
-                </Link>
-                <Link to="/home">
-                    <FontAwesomeIcon
-                    icon={faPlayCircle}
-                    color="var(--primary)"
-                    className="nav-icon option"
-                    style={{ fontSize: "1.5rem", padding:"0 0.5rem"}} 
-                    /> 
-                </Link>
-                <Link to="/home">
-                    <FontAwesomeIcon
-                    icon={faShop}
-                    color="var(--primary)"
-                    className="nav-icon option"
-                    style={{ fontSize: "1.5rem", padding:"0 0.5rem"}} 
-                    /> 
-                </Link>
-                <Link to="/groups">
-                    <FontAwesomeIcon
-                    icon={faUsers}
-                    color="var(--primary)"
-                    className="nav-icon option"
-                    style={{ fontSize: "1.5rem", padding:"0 0.5rem"}} 
-                    /> 
-                </Link>
-                <Link to="/home" >
-                    <FontAwesomeIcon
-                    icon={faFlag}
-                    color="var(--primary)"
-                    className="nav-icon option"
-                    style={{ fontSize: "1.5rem", padding:"0 0.5rem"}} 
-                    /> 
-                </Link>
-          </FlexBetween>
-          <FlexBetween gap="2rem" sx={{padding:"0 0.5rem"}}>
-            <IconButton sx={{  fontSize: "2rem" }}>
-            </IconButton>
-            <Message sx={{ fontSize: "2rem", color: "gray" }} className="nav-icon option"/>
-            <Notifications sx={{ fontSize: "2rem",color: "gray" }} className="nav-icon option"/>
+          <FlexBetween gap="1.5rem" sx={{padding:"0 0.5rem"}}>
+            <Typography 
+              sx={{
+                backgroundColor:"var(--secondary-diluted)",
+                cursor:"pointer",
+                padding: "0.4rem 0rem", 
+                fontWeight: "bold",
+                width: "7rem",
+                borderRadius:"0.5rem"
+              }}>Meet friends</Typography>
+            <Link to="/home" >
+                <FontAwesomeIcon
+                icon={faHome}
+                color="var(--primary)"
+                className="nav-icon option"
+                style={{ fontSize: "1.5rem", padding:"0 0.5rem" }} 
+                /> 
+            </Link>
+            <ChatSharp sx={{ fontSize: "2rem", color: "var(--primary)" }} className="nav-icon option"/>
+            <Notifications sx={{ fontSize: "2rem",color: "var(--primary)" }} className="nav-icon option"/>
             <FormControl variant="standard" value={fullName} 
               style={{display:"flex",flexDirection:"row"}}>
-
+              
               <div class="profile-info">
-                  <img class="user-avatar" src={userIcon} alt="User icon"/>
+                  <img class="user-avatar" src={userIcon} alt="User icon" width={"50px"}/>
               </div>
               <Select
                 sx={{
@@ -203,7 +168,7 @@ const Navbar = () => {
                 fontWeight: "bold",
                 width: "7rem",
               }}>Meet friends</Typography>
-            <Message sx={{ fontSize: "2rem", color: "gray" }} className="nav-icon option"/>
+            <ChatSharp sx={{ fontSize: "2rem", color: "gray" }} className="nav-icon option"/>
             <Notifications sx={{ fontSize: "2rem",color: "gray" }} className="nav-icon option"/>
             <FormControl variant="standard" value={fullName} 
               style={{display:"flex",flexDirection:"row"}}>

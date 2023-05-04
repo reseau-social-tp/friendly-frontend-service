@@ -66,7 +66,7 @@ const MyPostWidget = ({ picturePath }) => {
             width: "100%",
             backgroundColor: "var(--secondary-diluted)",
             color:"var(--black)",
-            borderRadius: "2rem",
+            borderRadius: "1.5rem",
             padding: "1rem 2rem",
           }}
         />

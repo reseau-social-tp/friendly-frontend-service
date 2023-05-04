@@ -1,6 +1,5 @@
 import {React, Outlet, Link} from "react-router-dom";
 import { Box, useMediaQuery } from "@mui/material";
-import TopNav from "../TopNav"
 import Navbar from "../navbar"
 import "./style.css"
 import HomeSidebar from "../HomeSidebar";
@@ -9,7 +8,7 @@ const Layout = () => {
   return (
     
     <Box
-    sx={{backgroundColor:"var(--secondary-diluted)"}}>
+      sx={{backgroundColor:"var(--secondary-diluted)"}}>
       <Navbar />
       <Box
         width="100%"
