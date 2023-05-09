@@ -6,12 +6,13 @@ import UserWidget from "../components/widgets/UserWidget";
 import MyPostWidget from "../components/widgets/MyPostWidget";
 import PostsWidget from "../components/widgets/PostsWidget";
 import AdvertWidget from "../components/widgets/AdvertWidget";
-import FriendListWidget from "../components/widgets/FriendListWidget";
+import RelatedToListWidget from "../components/widgets/RelatedToListWidget";
 
 export default function Home(props) {
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
-    const _id = "123MD"
-
+    
+    const user = JSON.parse(localStorage.getItem("user"))
+    console.log(user)
     return (
         <>
             <Box height="80vh"
@@ -23,14 +24,16 @@ export default function Home(props) {
                 mt={isNonMobileScreens ? undefined : "2rem"}
             >
                 <MyPostWidget picturePath={userDefault} />
-                <PostsWidget userId={_id} />
+                <PostsWidget userId={user._id} />
             </Box>
 
             {isNonMobileScreens && (
                 <Box flexBasis="26%">
                     <AdvertWidget />
                     <Box m="2rem 0" />
-                    <FriendListWidget userId={_id} />
+                    <RelatedToListWidget list={user.followers} title={"Followers"}/>
+                    <Box m="2rem 0" />
+                    <RelatedToListWidget list={user.following} title={"Following"} />
                 </Box>
             )}
         </>

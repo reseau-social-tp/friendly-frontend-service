@@ -2,17 +2,10 @@ import {
     faHeart,
     faFaceSmile,
     faPlayCircle,
-    faFaceLaugh,
-    faRectangleList,
     faUsers,
-    faSearch,
-    faCommenting,
-    faBell,
-    faUser,
     faFlag,
     faShop,
-    faRecordVinyl,
-    faDoorOpen
+    faRecordVinyl
 } from '@fortawesome/free-solid-svg-icons'
 
 const navLinks = [
@@ -61,12 +54,6 @@ const navLinks = [
     icon: faHeart,
     display: "Donate",
     color:"red"
-  },
-  {
-    path: "/home",
-    icon: faDoorOpen,
-    display: "Log Out",
-    color:"blue"
   },
 ];
 

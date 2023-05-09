@@ -105,6 +105,8 @@ export default function UserLogIn() {
         // Axios API call
         axios.post('https://social-network-auth-service.onrender.com/api/login', values).then((response) => {
             setIsLoading(false);
+            
+            localStorage.setItem('user', JSON.stringify(response.data.user))
             navigate("/home")
             return generateSuccess(response.data.msg)
         })

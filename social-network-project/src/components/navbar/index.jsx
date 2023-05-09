@@ -35,7 +35,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
-  const fullName = "NDANG ESSI Pierre Junior";
+  const user = JSON.parse(localStorage.getItem("user"))
 
   return (
     <FlexBetween padding="1rem 6%" class="header" backgroundColor={"white"}>
@@ -77,7 +77,8 @@ const Navbar = () => {
                 padding: "0.4rem 0rem", 
                 fontWeight: "bold",
                 width: "7rem",
-                borderRadius:"0.5rem"
+                borderRadius:"0.5rem",
+                textAlign:"center"
               }}>Meet friends</Typography>
             <Link to="/home" >
                 <FontAwesomeIcon
@@ -89,7 +90,7 @@ const Navbar = () => {
             </Link>
             <ChatSharp style={{ fontSize: "3rem", color: "var(--primary)" }} className="nav-icon option"/>
             <Notifications style={{ fontSize: "3rem",color: "var(--primary)" }} className="nav-icon option"/>
-            <FormControl variant="standard" value={fullName} 
+            <FormControl variant="standard" value={user.username} 
               style={{display:"flex",flexDirection:"row"}}>
               
               <div class="profile-info">
@@ -111,8 +112,8 @@ const Navbar = () => {
                 }}
                 input={<InputBase />}
               >
-                <MenuItem value={fullName}>
-                  <Typography>{fullName}</Typography>
+                <MenuItem value={user.username}>
+                  <Typography>{user.username}</Typography>
                 </MenuItem>
                 <MenuItem>Log Out</MenuItem>
               </Select>
@@ -177,6 +178,7 @@ const Navbar = () => {
                     </div>
                   </NavLink>
               ))}
+              
           </FlexBetween>
         </Box>
       )}
