@@ -166,6 +166,7 @@ width: 2rem;
 } 
 .option:hover{
     background-color: var(--primary-diluted);
+    
 }
   
 

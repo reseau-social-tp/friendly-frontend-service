@@ -5,8 +5,8 @@ import "./style.css"
 import HomeSidebar from "../HomeSidebar";
 const Layout = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
+  
   return (
-    
     <Box
       sx={{backgroundColor:"var(--secondary-diluted)"}}>
       <Navbar />
@@ -30,14 +30,6 @@ const Layout = () => {
         <Outlet/>
       </Box>
     </Box>
-    // <div className="layout">
-    //   <Navbar/>
-    //   <div className="main">
-    //     <LeftSidebar/>
-    //     <Outlet/>
-    //     <RightSidebar/>
-    //   </div>
-    // </div>
   );
 };
 
