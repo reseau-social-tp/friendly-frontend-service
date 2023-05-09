@@ -9,7 +9,6 @@ export default function FormValidation(props) {
         <div className="validation">
             <div className='progress'>
                 {props.isLoading && <Box sx={{ width: '95%'}}>
-                    
                     <CircularProgress color="success" />
                 </Box>}
             </div>

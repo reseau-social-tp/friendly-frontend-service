@@ -1,7 +1,6 @@
 import '../styles/home.css';
 import { Box, useMediaQuery } from "@mui/material";
 import userDefault from "../assets/images/user_default.png"
-import pat from "../assets/images/pat.jpg"
 
 import UserWidget from "../components/widgets/UserWidget";
 import MyPostWidget from "../components/widgets/MyPostWidget";
@@ -15,26 +14,24 @@ export default function Home(props) {
 
     return (
         <>
-            <Box
-            
-            height="80vh"
-            flexBasis={isNonMobileScreens ? "26%" : undefined}  
-            sx={isNonMobileScreens ? {width:"25vw"}:{display:"none"}}     
-            >
-            </Box>
-            <Box
-            flexBasis={isNonMobileScreens ? "42%" : undefined}
-            mt={isNonMobileScreens ? undefined : "2rem"}
+            <Box height="80vh"
+                flexBasis={isNonMobileScreens ? "26%" : undefined}  
+                sx={isNonMobileScreens ? {width:"25vw"}:{display:"none"}}     
+            ></Box>
+
+            <Box flexBasis={isNonMobileScreens ? "42%" : undefined}
+                mt={isNonMobileScreens ? undefined : "2rem"}
             >
                 <MyPostWidget picturePath={userDefault} />
                 <PostsWidget userId={_id} />
             </Box>
+
             {isNonMobileScreens && (
-            <Box flexBasis="26%">
-                <AdvertWidget />
-                <Box m="2rem 0" />
-                <FriendListWidget userId={_id} />
-            </Box>
+                <Box flexBasis="26%">
+                    <AdvertWidget />
+                    <Box m="2rem 0" />
+                    <FriendListWidget userId={_id} />
+                </Box>
             )}
         </>
     );

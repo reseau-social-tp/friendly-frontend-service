@@ -1,13 +1,21 @@
-
+// React imports
 import { useState } from 'react';
-import '../styles/logIn.css';
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import  axios  from "axios";
+
+// Axios import
+import  axios from "axios";
+
+// Usefull components
 import Entry from "../components/Entry"
 import Descriptor from "../components/Descriptor"
 import FormValidation from "../components/FormValidation"
+
+// Styles
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/logIn.css';
+
+// Images
 import Logo from '../assets/images/logo2.png'
 
 export default function UserLogIn() {
@@ -16,24 +24,27 @@ export default function UserLogIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
+    // Navigation handler
     const navigate = useNavigate()
 
 
-    // States for checking the errors
+    // States for checking when loading
     const [isLoading, setIsLoading] = useState(false)
-    // const [validated, setValidated] = useState(false);
 
-    // Handling changes
-    
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    };
+    // Email validation handler
     function isValidEmail(email) {
         return /\S+@\S+\.\S+/.test(email);
     }
+
+    // Handling changes
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    };
     const handlePassword = (e) => {
         setPassword(e.target.value);
     };
+
+    // React toastify boxes
     const generateError = (err) =>
     toast.error(err, {
         position: "top-right",
@@ -54,6 +65,7 @@ export default function UserLogIn() {
             draggable: true,
             theme: "colored",
         })
+
     // Handling the form submission
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -83,14 +95,17 @@ export default function UserLogIn() {
         navigate("/sign-up")
     };
     
+    // Funtion called on form submission
     const signUp = () =>  {
         const values = { 
             "email":email,
             "password":password
         };
 
+        // Axios API call
         axios.post('https://social-network-auth-service.onrender.com/api/login', values).then((response) => {
             setIsLoading(false);
+            navigate("/home")
             return generateSuccess(response.data.msg)
         })
         .catch((error) => {
@@ -102,9 +117,7 @@ export default function UserLogIn() {
     return (
         <div className='main-c'>
             <Descriptor intro="Nice to see you again"  welcome={<p className='welcome'>Welcome back to <span style={{color:"var(--hero-highlight)"}}>friendly</span></p>} encourager={<p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>}/>
-            
             <div className="recorder-c">
-                
                 <div className="form">
                     <div className='heading'>
                         <img src={Logo} alt="Logo" style={{height:"4rem"}} />
@@ -115,12 +128,9 @@ export default function UserLogIn() {
                         
                         <FormValidation isLoading={isLoading} submitHandler={handleSubmit} primaryLabel="Log in" secondaryMessage="Don't have an account ?" abortHandler={handleAbort} secondaryLabel="Sign up"/>
                     </form>
-
                 </div>
             </div>
-            
             <ToastContainer/>
         </div>
-        
     );
 }

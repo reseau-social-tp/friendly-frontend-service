@@ -9,11 +9,12 @@ div.validation {
 }
 div.validation .progress{
     display: flex;
+    justify-content: center!important;
+    align-items: center;
     height: 3rem;
-    width: 40%;
+    width: 15%;
     background-color: white;
 }
-
 div.validation div.secondary-container {
     display: flex;
     flex-direction: row;

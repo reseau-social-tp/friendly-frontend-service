@@ -1,14 +1,22 @@
-
+// React imports
 import { useState } from 'react';
-import '../styles/signUp.css';
 import {Form} from "react-bootstrap"
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+
+// Usefull components
 import Entry from "../components/Entry"
 import Descriptor from "../components/Descriptor"
 import FormValidation from "../components/FormValidation"
+
+// Axios import
 import  axios  from "axios";
+
+// Styles
+import '../styles/signUp.css';
 import 'react-toastify/dist/ReactToastify.css';
+
+// Images
 import Logo from '../assets/images/logo2.png'
 
 export default function UserSignUp() {
@@ -20,35 +28,32 @@ export default function UserSignUp() {
     const [password, setPassword] = useState('');
     const [gender, setGender] = useState('');
     
+    // Navigation handler
     const navigate = useNavigate()
-
-
-    // States for checking the errors
-    const [submitted, setSubmitted] = useState(false);
-    const [error, setError] = useState(false);
+    
+    // States for checking when loading
     const [isLoading, setIsLoading] = useState(false)
+    
+    // Email validator
+    function isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
+    }
 
     // Handling changes
     const handleFullName = (e) => {
         setFullName(e.target.value);
-        setSubmitted(false);
     };
     const handleUsername = (e) => {
         setUsername(e.target.value);
-        setSubmitted(false);
     };
     const handleEmail = (e) => {
         setEmail(e.target.value);
-        setSubmitted(false);
     };
-    function isValidEmail(email) {
-        return /\S+@\S+\.\S+/.test(email);
-    }
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        setSubmitted(false);
     };
     
+    // React toastify boxes
     const generateError = (err) =>
     toast.error(err, {
         position: "top-right",
@@ -76,8 +81,6 @@ export default function UserSignUp() {
         setIsLoading(true)
 
         if (fullName === '' || username === '' || email === '' || password === '' || gender === '') {
-            setError(true); 
-
             if (fullName === ""){
                 setIsLoading(false)
                 return generateError("Please enter your full name.")
@@ -102,11 +105,9 @@ export default function UserSignUp() {
             }
         }
         else if (!isValidEmail(email)) {
-            setError(true);
             setIsLoading(false)
             return generateError('Email is invalid')
         } else {
-            setError(false);
             return signUp()
         }
     };
@@ -116,6 +117,7 @@ export default function UserSignUp() {
         navigate("/log-in")
     };
     
+    // Funtion called on form submission
     const signUp = () =>  {
         const values = { 
             "fullname": fullName,
@@ -125,8 +127,10 @@ export default function UserSignUp() {
             "gender":gender
         };
 
+        // Axios API call
         axios.post('https://social-network-auth-service.onrender.com/api/register', values).then((response) => {
             setIsLoading(false);
+            navigate("/home")
             return generateSuccess(response.data.msg)
         })
         .catch((error) => {
@@ -138,7 +142,6 @@ export default function UserSignUp() {
     return (
         <div className='main-c'>
             <Descriptor intro="Nice to see you"  welcome={<p className='welcome'>Welcome to <span style={{color:"var(--hero-highlight)"}}>friendly</span></p>} encourager={<p className='encourager'>Here is a very nice social network where you can have <strong>infinite fun</strong>. So, if you need to <span>beautify your days</span>, you are at the right place.</p>}/>
-            
             <div className="recorder-c">                
                 <div className="form">
                     <div className='heading'>
@@ -149,7 +152,6 @@ export default function UserSignUp() {
                         <Entry handler={handleUsername} type="text" identifier="username-text" label="Username"/>
                         <Entry handler={handleEmail} type="text" identifier="email-text" label="Email"/>
                         <Entry handler={handlePassword} type="password" identifier="password-text" label="Password"/>
-
                         <Form.Group className="gender">
                             <Form.Label className='name'>Gender</Form.Label>
                             <div className='options'>
@@ -163,14 +165,10 @@ export default function UserSignUp() {
                         </Form.Group>
                         
                         <FormValidation isLoading={isLoading} submitHandler={handleSubmit} primaryLabel="Sign up" secondaryMessage="Already have an account ?" abortHandler={handleAbort} secondaryLabel="Log in"/>
-                        
                     </form>
-
                 </div>
             </div>
-            
             <ToastContainer/>
         </div>
-        
     );
 }
