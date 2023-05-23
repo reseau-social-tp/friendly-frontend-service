@@ -12,6 +12,7 @@ import Layout from './components/Layout'
 // Styles
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
+import MyProfile from "./pages/profile";
 
 function App() {   
     
@@ -24,11 +25,12 @@ function App() {
                 <Route path='/log-in' element={<UserLogIn/>}/>
                 <Route path='/' element={<Layout/>}>
                     <Route path='home' element={<Home/>}/>
+                    <Route path='profile' element={<MyProfile/>}/>
                 </Route>
             
             </Routes>
         </BrowserRouter>
-        </div>
+    </div>
     
     )
     

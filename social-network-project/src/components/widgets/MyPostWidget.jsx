@@ -20,39 +20,71 @@ import Dropzone from "react-dropzone";
 import UserImage from "../UserImage";
 import WidgetWrapper from "../WidgetWrapper";
 import { useState } from "react";
+import imageCompression from 'browser-image-compression';
 // import { useDispatch, useSelector } from "react-redux";
 // import { setPosts } from "state";
 
 const MyPostWidget = ({ picturePath }) => {
+  const user = JSON.parse(localStorage.getItem("user"))
+
+
   // const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
-  const [post, setPost] = useState("");
+  const [imageData, setImageData] = useState(null);
+  const [message, setMessage] = useState("");
+  const userId = user._id;
+  
   // const { _id } = useSelector((state) => state.user);
   // const token = useSelector((state) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const primary = "var(--primary)";
   const secondary = "var(--secondary)";
 
-  // const handlePost = async () => {
-  //   const formData = new FormData();
-  //   formData.append("userId", _id);
-  //   formData.append("description", post);
-  //   if (image) {
-  //     formData.append("picture", image);
-  //     formData.append("picturePath", image.name);
-  //   }
+  
+  const compressImage = async function(image){
+    console.log(image);
+    setImage(image);
+    const imageFile = image
+    const option = {
+        maxSizeMB:0.05,
+        maxWidthOrHeight:1000
+    }
+    try {
+        const compressedFile = await imageCompression(imageFile, option)
+        var reader = new FileReader()
+        reader.readAsDataURL(compressedFile)
+        reader.onload = () =>{
+            console.log(reader.result);
+            setImageData(reader.result)
+            // setValue({...values,image: reader.result})
+        }
+        reader.onerror = error => {
+            console.log("Error: ", error);
+          };
+    } catch (error) {
+            console.log(error);
+    }   
+}
 
-  //   const response = await fetch(`http://localhost:3001/posts`, {
-  //     method: "POST",
-  //     headers: { Authorization: `Bearer ${token}` },
-  //     body: formData,
-  //   });
-  //   const posts = await response.json();
-  //   dispatch(setPosts({ posts }));
-  //   setImage(null);
-  //   setPost("");
-  // };
+  const handlePost = async (e) => {
+    e.preventDefault()
+    const formData = new FormData();
+    formData.append("posterId", userId);
+    formData.append("message", message);
+    formData.append("image", imageData);
+
+    const response = await fetch(`https://friendly-post-service.onrender.com/api`, {
+      method: "POST",
+      // headers: { Authorization: `Bearer ${token}` },
+      body: formData,
+    });
+    const posts = await response.json();
+    console.log(posts);
+    // dispatch(setPosts({ posts }));
+    setImage(null);
+    setMessage("");
+  };
 
   return (
     <WidgetWrapper>
@@ -60,8 +92,8 @@ const MyPostWidget = ({ picturePath }) => {
         <UserImage image={picturePath} />
         <InputBase
           placeholder="What's on your mind..."
-          onChange={(e) => setPost(e.target.value)}
-          value={post}
+          onChange={(e) => setMessage(e.target.value)}
+          value={message}
           sx={{
             width: "100%",
             backgroundColor: "var(--secondary-diluted)",
@@ -81,7 +113,7 @@ const MyPostWidget = ({ picturePath }) => {
           <Dropzone
             acceptedFiles=".jpg,.jpeg,.png"
             multiple={false}
-            onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
+            onDrop={(acceptedFiles) => compressImage(acceptedFiles[0])}
           >
             {({ getRootProps, getInputProps }) => (
               <FlexBetween>
@@ -97,12 +129,12 @@ const MyPostWidget = ({ picturePath }) => {
                     <p style={{color:"var(--primary)"}}>Add Image Here</p>
                   ) : (
                     <FlexBetween>
-                      <Typography>{image.name}</Typography>
+                      <Typography sx={{color:"black"}}>{image.name}</Typography>
                       <EditOutlined />
                     </FlexBetween>
                   )}
                 </Box>
-                {image && (
+                {imageData && (
                   <IconButton
                     onClick={() => setImage(null)}
                     sx={{ width: "15%" }}
@@ -163,8 +195,8 @@ const MyPostWidget = ({ picturePath }) => {
         )}
 
         <Button
-          disabled={!post}
-          // onClick={handlePost}
+          disabled={!message}
+          onClick={handlePost}
           style={{
             color: "white",
             backgroundColor: "var(--primary)",

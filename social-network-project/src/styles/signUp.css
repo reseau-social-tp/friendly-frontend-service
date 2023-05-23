@@ -34,6 +34,9 @@ div.form div.heading{
     font-size: 3rem;
     padding: 0!important;
     margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 div.form div.heading p{
     font-size: 2rem;

@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const HomeSidebar = () => {
   var user = {}
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   // useEffect(() => {
   //     const verify = async () => {
   //         if (!localStorage.getItem("user")){
@@ -23,14 +23,14 @@ const HomeSidebar = () => {
 
   const logout = () => {
     localStorage.removeItem("user")
-    console.log("HERE")
   }
 
   user = JSON.parse(localStorage.getItem("user"))
   
   return (
+      
         <div className="sidebar">
-          <div className="sidebarRow">
+          <div className="sidebarRow" onClick={() => navigate("/profile")}>
             <img class="user-avatar" src={userIcon} alt="User icon"/>
             <h4 style={{fontSize:"1.5rem"}}>{user.username}</h4>
           </div>

@@ -130,11 +130,13 @@ export default function UserSignUp() {
         // Axios API call
         axios.post('https://social-network-auth-service.onrender.com/api/register', values).then((response) => {
             setIsLoading(false);
+            console.log(response)
             localStorage.setItem('user', JSON.stringify(response.data.user))
             navigate("/home")
             return generateSuccess(response.data.msg)
         })
         .catch((error) => {
+            console.log(error)
             setIsLoading(false);
             return generateError(error.response.data.msg)
         });

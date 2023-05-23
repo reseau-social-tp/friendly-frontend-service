@@ -19,6 +19,7 @@ import {
   Close,
 
 } from "@mui/icons-material";
+import { faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -37,10 +38,14 @@ const Navbar = () => {
 
   const user = JSON.parse(localStorage.getItem("user"))
 
+  const logout = () => {
+    localStorage.removeItem("user")
+    navigate("/log-in")
+  }
   return (
     <FlexBetween padding="1rem 6%" class="header" backgroundColor={"white"}>
       <FlexBetween gap="1.75rem" class="header-left">
-        <Link><img src={logo} alt="Logo" className="logo-icon" style={{height:"2.5rem", padding:"0 1rem"}} /></Link>
+        <Link to="/home"><img src={logo} alt="Logo" className="logo-icon" style={{height:"2.5rem", padding:"0 1rem"}} /></Link>
         {isNonMobileScreens ?
           <FlexBetween
             borderRadius="0.5rem"
@@ -94,9 +99,9 @@ const Navbar = () => {
               style={{display:"flex",flexDirection:"row"}}>
               
               <div class="profile-info">
-                  <img class="user-avatar" src={userIcon} alt="User icon" width={"50px"}/>
+              <Link to="/profile" style={{textDecoration:"none", color:"var(--secondary)"}}><img class="user-avatar" src={userIcon} alt="User icon" width={"50px"}/></Link>
               </div>
-              <Select
+              {/* <Select
                 sx={{
                   backgroundColor: "white",
                   width: "50px",
@@ -112,11 +117,11 @@ const Navbar = () => {
                 }}
                 input={<InputBase />}
               >
-                <MenuItem value={user.username}>
-                  <Typography>{user.username}</Typography>
+                <MenuItem>
+                  <Link to="/profile" style={{textDecoration:"none", color:"var(--secondary)"}}><Typography>{user.username}</Typography></Link>
                 </MenuItem>
-                <MenuItem>Log Out</MenuItem>
-              </Select>
+                <MenuItem onClick={() => logout}>Log Out</MenuItem>
+              </Select> */}
             </FormControl>
           </FlexBetween>
         </>
@@ -178,6 +183,23 @@ const Navbar = () => {
                     </div>
                   </NavLink>
               ))}
+              
+              <NavLink
+                  to={"/log-in"}
+                  className="navbarRow"
+                  onClick={() => logout()}
+                >
+                  <div className="icon-container">
+                    <FontAwesomeIcon
+                    icon={faDoorOpen}
+                    color={"blue"}
+                    className="nav-icons"
+                    /> 
+                  </div>
+                  <div>
+                    <h4>Log Out</h4>
+                  </div>
+                </NavLink>
               
           </FlexBetween>
         </Box>
