@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PostBoxPlaceholder from "../potentialPost";
 // import { useDispatch, useSelector } from "react-redux";
 // import { setPosts } from "state";
 import PostWidget from "./PostWidget";
@@ -33,6 +34,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   // const posts = useSelector((state) => state.posts);
   // const token = useSelector((state) => state.token);
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getPosts = async () => {
     const response = await fetch("https://friendly-post-service.onrender.com/api", {
@@ -40,8 +42,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       // headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
-    console.log(data)
     setPosts(data);
+    setIsLoading(false);
     // dispatch(setPosts({ posts: data }));
   };
 
@@ -58,6 +60,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   // };
 
   useEffect(() => {
+    setIsLoading(true)
     if (isProfile) {
       // getUserPosts();
     } else {
@@ -67,25 +70,32 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   return (
     <>
-      {posts.map(
-        ({
-          _id,
-          posterId,
-          pictures,
-          message,
-          likers,
-          comments,
-        }) => (
-          <PostWidget
-            postId={_id}
-            postUserId={posterId}
-            image={pictures}
-            message={message}
-            likers={likers}
-            comments={comments}
-          />
+    {isLoading ? (
+        <PostBoxPlaceholder count={10}/>
+      ):(
+        posts.map(
+          ({
+            _id,
+            posterId,
+            pictures,
+            message,
+            likers,
+            comments,
+          }) => (
+            <PostWidget
+              postId={_id}
+              postUserId={posterId}
+              image={pictures}
+              message={message}
+              likers={likers}
+              comments={comments}
+            />
+          )
         )
-      )}
+    )
+
+    }
+      
     </>
   );
 };

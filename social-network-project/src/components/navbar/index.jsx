@@ -75,16 +75,18 @@ const Navbar = () => {
       {isNonMobileScreens ? (
         <>
           <FlexBetween gap="1.5rem" sx={{padding:"0 0.5rem"}}>
-            <Typography 
-              sx={{
-                backgroundColor:"var(--secondary-diluted)",
-                cursor:"pointer",
-                padding: "0.4rem 0rem", 
-                fontWeight: "bold",
-                width: "7rem",
-                borderRadius:"0.5rem",
-                textAlign:"center"
-              }}>Meet friends</Typography>
+            <Link to="/users" style={{textDecoration:"none", }}>
+              <Typography 
+                sx={{
+                  backgroundColor:"var(--secondary-diluted)",
+                  cursor:"pointer",
+                  padding: "0.4rem 0rem", 
+                  fontWeight: "bold",
+                  width: "7rem",
+                  borderRadius:"0.5rem",
+                  textAlign:"center"
+                }}>Meet friends</Typography>
+            </Link>
             <Link to="/home" >
                 <FontAwesomeIcon
                 icon={faHome}

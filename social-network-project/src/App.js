@@ -13,6 +13,7 @@ import Layout from './components/Layout'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import MyProfile from "./pages/profile";
+import Users from "./pages/users";
 
 function App() {   
     
@@ -26,8 +27,8 @@ function App() {
                 <Route path='/' element={<Layout/>}>
                     <Route path='home' element={<Home/>}/>
                     <Route path='profile' element={<MyProfile/>}/>
+                    <Route path='users' element={<Users/>}/>
                 </Route>
-            
             </Routes>
         </BrowserRouter>
     </div>

@@ -10,7 +10,7 @@ import {
 
 const navLinks = [
   {
-    path: "/home",
+    path: "/users",
     icon: faFaceSmile,
     display: "Friends",
     color:"orange"

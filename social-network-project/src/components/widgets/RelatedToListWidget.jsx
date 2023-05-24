@@ -58,9 +58,9 @@ const RelatedToListWidget = ({ list, title }) => {
         {...getToggleProps()}
         >
         <h4
-          style={{cursor: "pointer", fontWeight: "500"}}
+          style={{cursor: "pointer", fontWeight: "500", fontSize:"1.5rem", position:"relative"}}
         >
-          {title}
+          {title}<span style={{backgroundColor:"var(--secondary)",fontSize:"1rem", position:"absolute",right:"-15%",top:"-25%", borderRadius:"10rem", color:"white", padding:"0 0.3rem"}}>{list.length}</span>
         </h4>
         <FontAwesomeIcon
           icon={isExpanded ? faArrowUpLong : faArrowDownLong}

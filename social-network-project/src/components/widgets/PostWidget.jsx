@@ -37,7 +37,6 @@ const PostWidget = ({
   const main = "black";
   const primary = "var(--primary)";
   const secondary = "var(--secondary)";
-  console.log(image)
 
   // const patchLike = async () => {
   //   const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
@@ -58,8 +57,6 @@ const PostWidget = ({
     >
       <Friend
         friendId={postUserId}
-        name={"Essi"}
-        subtitle={"Yaounde, Cameroon"}
         userPicturePath={img}
       />
       {image[0] !== "null" ?
