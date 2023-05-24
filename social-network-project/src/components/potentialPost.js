@@ -18,8 +18,8 @@ const PostBoxPlaceholder = ({
             <FlexBetween gap="1rem">
                 <Skeleton circle width={"55px"} height={"55px"}/>
                 <Box>
+                    <Skeleton width={"5rem"}/>
                     <Skeleton width={"10rem"}/>
-                    <Skeleton width={"20rem"}/>
                 </Box>
             </FlexBetween>
             <Skeleton circle width={"35px"} height={"35px"}/>
@@ -27,18 +27,24 @@ const PostBoxPlaceholder = ({
         <Skeleton width={"100%"}/>
         <Skeleton width={"100%"} height={"15rem"}/>
 
-      <FlexBetween mt="0.5rem">
+        <FlexBetween mt="0.5rem">
+        <FlexBetween gap="2rem">
+            <Skeleton width={"90%"}/>
+        </FlexBetween>
+      </FlexBetween>
+
+      <FlexBetween mt="0.5rem" >
         <FlexBetween gap="2rem">
           <FlexBetween gap="0.3rem">
-            <Skeleton width={"10rem"}/>
+            <Skeleton width={"7rem"}/>
+            <Skeleton width={"7rem"}/>
+            <Skeleton width={"7rem"}/>
           </FlexBetween>
 
           <FlexBetween gap="0.3rem">
-            <Skeleton width={"10rem"}/>
           </FlexBetween>
 
           <FlexBetween>
-            <Skeleton width={"10rem"}/>
           </FlexBetween>
         </FlexBetween>
       </FlexBetween>

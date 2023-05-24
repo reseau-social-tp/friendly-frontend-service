@@ -74,7 +74,8 @@ const MyPostWidget = ({ picturePath }) => {
     formData.append("message", message);
     formData.append("image", imageData);
 
-    const response = await fetch(`https://friendly-post-service.onrender.com/api`, {
+    const response = await fetch(`http://localhost:5001/api`, {
+      // const response = await fetch(`https://friendly-post-service.onrender.com/api`, {
       method: "POST",
       // headers: { Authorization: `Bearer ${token}` },
       body: formData,

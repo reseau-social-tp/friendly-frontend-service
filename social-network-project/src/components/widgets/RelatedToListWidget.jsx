@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { setFriends } from "state";
 import img from "../../assets/images/toko.jpg"
 import FlexBetween from "../FlexBetween";
+import { KeyboardDoubleArrowDownOutlined, KeyboardDoubleArrowUpOutlined, KeyboardDoubleArrowUpRounded } from "@mui/icons-material";
 
 const RelatedToListWidget = ({ list, title }) => {
   // const dispatch = useDispatch();
@@ -22,14 +23,6 @@ const RelatedToListWidget = ({ list, title }) => {
   
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
 
-  // const friends = [
-  //   {_id:1,name:"Cardilax" },
-  //   {_id:2,name:"Luther" },
-  //   {_id:3,name:"Adams" },
-  //   {_id:4,name:"Cyrille" },
-  //   {_id:5,name:"Walter" },
-  //   {_id:6,name:"Jordan" },
-  //   {_id:7,name:"Beerus" },]
 
   // const getFriends = async () => {
   //   const response = await fetch(
@@ -48,25 +41,23 @@ const RelatedToListWidget = ({ list, title }) => {
   // }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <WidgetWrapper>
-      <FlexBetween 
-        marginBottom={"1rem"}
-        padding={"0 1rem"}
-        backgroundColor="var(--secondary-diluted)"
-        borderRadius={"5rem"}
-        sx={{cursor: "pointer"}}
+    <WidgetWrapper
         {...getToggleProps()}
+        >
+      <FlexBetween 
+        padding={"0 1rem"}
+        sx={{cursor: "pointer"}}
         >
         <h4
           style={{cursor: "pointer", fontWeight: "500", fontSize:"1.5rem", position:"relative"}}
         >
           {title}<span style={{backgroundColor:"var(--secondary)",fontSize:"1rem", position:"absolute",right:"-15%",top:"-25%", borderRadius:"10rem", color:"white", padding:"0 0.3rem"}}>{list.length}</span>
         </h4>
-        <FontAwesomeIcon
-          icon={isExpanded ? faArrowUpLong : faArrowDownLong}
-          color={"var(--secondary)"}
-          
-          /> 
+        {
+          isExpanded ?
+          <KeyboardDoubleArrowUpOutlined color={"var(--secondary)"}/>:
+          <KeyboardDoubleArrowDownOutlined color={"var(--secondary)"}/>
+        }
 
       </FlexBetween>
       <Box display="flex" flexDirection="column" gap="1.5rem" {...getCollapseProps()}>
@@ -74,8 +65,6 @@ const RelatedToListWidget = ({ list, title }) => {
           <Friend
             key={element._id}
             friendId={element._id}
-            name={`${element.name}`}
-            subtitle={"friend"}
             userPicturePath={img}
           />
         ))}

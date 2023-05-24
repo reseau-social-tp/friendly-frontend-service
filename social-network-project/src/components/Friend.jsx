@@ -5,11 +5,15 @@ import { useNavigate,  } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
+import { Spinner } from "react-bootstrap";
+import _ from "lodash";
+import FriendBoxPlaceholder from "./potentialFriend";
 
 const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   // const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"))
+  const [followings, setFollowings] = useState([]);
   // const { _id } = useSelector((state) => state.user);
   // const token = useSelector((state) => state.token);
   // const friends = useSelector((state) => state.user.friends);
@@ -24,6 +28,26 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const secondary = "var(--secondary)";
     const secondaryDiluted = "var(--secondary-diluted)";
   
+    const follow = async (id) => {
+      const response = await fetch(`http://localhost:5000/api/user/${id}/follow`, {
+          // const response = await fetch("https://social-network-auth-service.onrender.com/users", {
+      method: "PATCH",
+      headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+      },	
+
+      // Fields that to be updated are passed
+      body: JSON.stringify({
+          _id: user._id
+      })
+      // headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await response.json();
+      // setUsers(data.users);
+      // dispatch(setPosts({ posts: data }));
+      getUsers()
+  };
   
     const getFriend = async () => {
       const response = await fetch(
@@ -33,7 +57,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         }
       );
       const data = await response.json();
-      console.log(data.user);
       setFriend(data.user)
       
       var array = []
@@ -45,6 +68,10 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     };
     
     
+    useEffect(() => {
+      getUsers();
+  }, []);
+
     const getUsers = async () => {
       const response = await fetch(`http://localhost:5000/api/users/`, {
           // const response = await fetch("https://social-network-auth-service.onrender.com/users", {
@@ -54,6 +81,18 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
       const data = await response.json();
       setUsers(data.users);
       getFriend()
+      var array = []
+        for (let index = 0; index < data.users.length; index++) {
+            if (data.users[index]._id === user._id) {
+                localStorage.setItem("user", JSON.stringify(data.users[index]))
+                for (let i = 0; i < data.users[index].following.length; i++) {
+                    array.push(data.users[index].following[i]);
+                    
+                }
+            }
+            
+        }
+        setFollowings(array)
       // dispatch(setPosts({ posts: data }));
   };
     const unFollow = async (id) => {
@@ -78,6 +117,8 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     getFriend();
   }, []);
   return (
+    _.isEmpty(friend)  ?
+    <FriendBoxPlaceholder/>:
     <FlexBetween>
       <FlexBetween gap="1rem">
         <UserImage image={userPicturePath} size="55px" />
@@ -109,10 +150,10 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         // onClick={() => patchFriend()}
         sx={{ backgroundColor: secondaryDiluted, p: "0.6rem" }}
         >
-        {isFriend ? (
+        {followings.includes(friendId)? (
           <PersonRemoveOutlined sx={{ color: primary }} onClick={() => unFollow(friendId)}/>
         ) : (
-          <PersonAddOutlined sx={{ color: secondary }} />
+          <PersonAddOutlined sx={{ color: secondary }} onClick={() => follow(friendId)}/>
         )}
       </IconButton>
     </FlexBetween>

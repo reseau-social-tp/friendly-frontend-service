@@ -71,7 +71,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   return (
     <>
     {isLoading ? (
-        <PostBoxPlaceholder count={10}/>
+        <PostBoxPlaceholder count={5}/>
       ):(
         posts.map(
           ({
@@ -79,7 +79,6 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             posterId,
             pictures,
             message,
-            likers,
             comments,
           }) => (
             <PostWidget
@@ -87,7 +86,6 @@ const PostsWidget = ({ userId, isProfile = false }) => {
               postUserId={posterId}
               image={pictures}
               message={message}
-              likers={likers}
               comments={comments}
             />
           )
