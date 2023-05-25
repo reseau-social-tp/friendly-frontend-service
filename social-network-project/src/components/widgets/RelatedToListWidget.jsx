@@ -42,11 +42,11 @@ const RelatedToListWidget = ({ list, title }) => {
 
   return (
     <WidgetWrapper
-        {...getToggleProps()}
         >
       <FlexBetween 
         padding={"0 1rem"}
         sx={{cursor: "pointer"}}
+        {...getToggleProps()}
         >
         <h4
           style={{cursor: "pointer", fontWeight: "500", fontSize:"1.5rem", position:"relative"}}

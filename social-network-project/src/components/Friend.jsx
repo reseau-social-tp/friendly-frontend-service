@@ -14,6 +14,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"))
   const [followings, setFollowings] = useState([]);
+  const [isFollowings, setIsFollowings] = useState(false);
   // const { _id } = useSelector((state) => state.user);
   // const token = useSelector((state) => state.token);
   // const friends = useSelector((state) => state.user.friends);
@@ -47,6 +48,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
       // setUsers(data.users);
       // dispatch(setPosts({ posts: data }));
       getUsers()
+      setIsFollowings(false)
   };
   
     const getFriend = async () => {
@@ -66,11 +68,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
           } 
       }
     };
-    
-    
-    useEffect(() => {
-      getUsers();
-  }, []);
 
     const getUsers = async () => {
       // const response = await fetch(`http://localhost:5000/api/users/`, {
@@ -97,24 +94,26 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   };
     const unFollow = async (id) => {
       // const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
-      const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
-      method: "PATCH",
-      headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-      },	
-
-      body: JSON.stringify({
-          _id: user._id
-      })
-      });
-      const data = await response.json();
-      console.log(data)
-      getUsers()
-  };
-
-  useEffect(() => {
-    getFriend();
+        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
+          method: "PATCH",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },	
+          
+          body: JSON.stringify({
+            _id: user._id
+          })
+        });
+        const data = await response.json();
+        console.log(data)
+        getUsers()
+        setIsFollowings(false)
+      };
+      
+      useEffect(() => {
+        getFriend();
+        getUsers();
   }, []);
   return (
     _.isEmpty(friend)  ?
@@ -146,16 +145,26 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
           </Typography>
         </Box>
       </FlexBetween>
-      <IconButton
-        // onClick={() => patchFriend()}
-        sx={{ backgroundColor: secondaryDiluted, p: "0.6rem" }}
-        >
-        {followings.includes(friendId)? (
-          <PersonRemoveOutlined sx={{ color: primary }} onClick={() => unFollow(friendId)}/>
-        ) : (
-          <PersonAddOutlined sx={{ color: secondary }} onClick={() => follow(friendId)}/>
-        )}
-      </IconButton>
+      {
+        isFollowings?
+        <Spinner size="sm"/>:
+        <IconButton
+          // onClick={() => patchFriend()}
+          sx={{ backgroundColor: secondaryDiluted, p: "0.6rem" }}
+          >
+          {followings.includes(friendId)? (
+            <PersonRemoveOutlined sx={{ color: primary }} onClick={() => {
+              setIsFollowings(true)
+              unFollow(friendId)
+            }}/>
+          ) : (
+            <PersonAddOutlined sx={{ color: secondary }} onClick={() => {
+              setIsFollowings(true)
+              follow(friendId)
+            }}/>
+          )}
+        </IconButton>
+      }
     </FlexBetween>
   );
 };
