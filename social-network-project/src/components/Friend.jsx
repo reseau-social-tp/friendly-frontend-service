@@ -29,7 +29,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const secondaryDiluted = "var(--secondary-diluted)";
   
     const follow = async (id) => {
-      const response = await fetch(`http://localhost:5000/api/user/${id}/follow`, {
+      const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/follow`, {
           // const response = await fetch("https://social-network-auth-service.onrender.com/users", {
       method: "PATCH",
       headers: {
@@ -51,7 +51,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   
     const getFriend = async () => {
       const response = await fetch(
-        `http://localhost:5000/api/user/${friendId}`,
+        `https://social-network-auth-service.onrender.com/api/user/${friendId}`,
         {
           method: "GET"
         }
@@ -73,8 +73,8 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   }, []);
 
     const getUsers = async () => {
-      const response = await fetch(`http://localhost:5000/api/users/`, {
-          // const response = await fetch("https://social-network-auth-service.onrender.com/users", {
+      // const response = await fetch(`http://localhost:5000/api/users/`, {
+      const response = await fetch("https://social-network-auth-service.onrender.com/api/users", {
       method: "GET"
       // headers: { Authorization: `Bearer ${token}` },
       });
@@ -96,8 +96,8 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
       // dispatch(setPosts({ posts: data }));
   };
     const unFollow = async (id) => {
-      const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
-          // const response = await fetch("https://social-network-auth-service.onrender.com/users", {
+      // const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
+      const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
       method: "PATCH",
       headers: {
           Accept: "application/json",

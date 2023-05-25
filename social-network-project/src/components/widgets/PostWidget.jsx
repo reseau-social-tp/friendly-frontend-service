@@ -48,7 +48,7 @@ const PostWidget = ({
 
   const patchLike = async () => {
     if (isLiked) {
-      const response = await fetch(`http://localhost:5001/api/unlike-post/${postId}`, {
+      const response = await fetch(`https://friendly-post-service.onrender.com/api/unlike-post/${postId}`, {
         method: "PATCH",
         headers: {
             Accept: "application/json",
@@ -61,7 +61,7 @@ const PostWidget = ({
       // setIsLiked(false)
     }
     else{
-      const response = await fetch(`http://localhost:5001/api/like-post/${postId}`, {
+      const response = await fetch(`https://friendly-post-service.onrender.com/api/like-post/${postId}`, {
         method: "PATCH",
         headers: {
             Accept: "application/json",
@@ -76,7 +76,7 @@ const PostWidget = ({
   };
   
   const getPost = async () => {
-    const response = await fetch(`http://localhost:5001/api/${postId}`, {
+    const response = await fetch(`https://friendly-post-service.onrender.com/api/${postId}`, {
       method: "GET",
       // headers: { Authorization: `Bearer ${token}` },
     });

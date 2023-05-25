@@ -24,8 +24,8 @@ export default function Users(props) {
     const [isLoading, setIsLoading] = useState(false);
     
     const getUsers = async () => {
-        const response = await fetch(`http://localhost:5000/api/users/`, {
-            // const response = await fetch("https://social-network-auth-service.onrender.com/users", {
+        // const response = await fetch(`http://localhost:5000/api/users/`, {
+        const response = await fetch("https://social-network-auth-service.onrender.com/api/users", {
         method: "GET"
         // headers: { Authorization: `Bearer ${token}` },
         });
@@ -50,8 +50,8 @@ export default function Users(props) {
         // dispatch(setPosts({ posts: data }));
     };
     const follow = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/user/${id}/follow`, {
-            // const response = await fetch("https://social-network-auth-service.onrender.com/users", {
+        // const response = await fetch(`http://localhost:5000/api/user/${id}/follow`, {
+        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/follow`, {
         method: "PATCH",
         headers: {
             Accept: "application/json",
@@ -72,8 +72,8 @@ export default function Users(props) {
         setIsFollowing(false)
     };
     const unFollow = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
-            // const response = await fetch("https://social-network-auth-service.onrender.com/users", {
+        // const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
+        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
         method: "PATCH",
         headers: {
             Accept: "application/json",
