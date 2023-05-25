@@ -14,7 +14,7 @@ const Layout = () => {
         // height="200vh"
         gap="0.5rem"
         justifyContent="center"
-        sx={{backgroundColor:"var(--secondary-diluted)", position:"relative"}}
+        sx={{position:"relative"}}
       >        
         <Outlet/>
       </Box>
