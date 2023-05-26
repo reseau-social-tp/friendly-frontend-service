@@ -9,12 +9,14 @@ import { Spinner } from "react-bootstrap";
 import _ from "lodash";
 import FriendBoxPlaceholder from "./potentialFriend";
 
+import { formatDate } from "../utils";
 const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   // const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"))
   const [followings, setFollowings] = useState([]);
   const [isFollowings, setIsFollowings] = useState(false);
+  const [date, setDate] = useState("");
   // const { _id } = useSelector((state) => state.user);
   // const token = useSelector((state) => state.token);
   // const friends = useSelector((state) => state.user.friends);
@@ -92,29 +94,42 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         setFollowings(array)
       // dispatch(setPosts({ posts: data }));
   };
-    const unFollow = async (id) => {
-      // const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
-        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
-          method: "PATCH",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          },	
-          
-          body: JSON.stringify({
-            _id: user._id
-          })
-        });
-        const data = await response.json();
-        console.log(data)
-        getUsers()
-        setIsFollowings(false)
-      };
+  const unFollow = async (id) => {
+    // const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
+      const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },	
+        
+        body: JSON.stringify({
+          _id: user._id
+        })
+      });
+      const data = await response.json();
+      console.log(data)
+      getUsers()
+      setIsFollowings(false)
+    };
+    const getDate = async () => {
+      if (!(_.isEmpty(friend))){
+        // console.log(friend.createdAt)
+        setDate(formatDate(Date.parse(friend.createdAt)))
+        
+
+      }
+    };
       
       useEffect(() => {
         getFriend();
-        getUsers();
-  }, []);
+        
+        if (!(_.isEmpty(friend))){
+          getUsers();
+          getDate()
+        }
+
+  }, [friend]);
   return (
     _.isEmpty(friend)  ?
     <FriendBoxPlaceholder/>:
@@ -141,7 +156,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
             {friend.username}
           </Typography>
           <Typography color={primary} fontSize="0.75rem">
-            {friend.updatedAt}
+            {date}
           </Typography>
         </Box>
       </FlexBetween>

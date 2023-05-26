@@ -19,8 +19,9 @@ import FlexBetween from "../FlexBetween";
 import Dropzone from "react-dropzone";
 import UserImage from "../UserImage";
 import WidgetWrapper from "../WidgetWrapper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import imageCompression from 'browser-image-compression';
+import { Spinner } from "react-bootstrap";
 // import { useDispatch, useSelector } from "react-redux";
 // import { setPosts } from "state";
 
@@ -33,6 +34,7 @@ const MyPostWidget = ({ picturePath }) => {
   const [image, setImage] = useState(null);
   const [imageData, setImageData] = useState(null);
   const [message, setMessage] = useState("");
+  const [isPosting, setIsPosting] = useState(false);
   const userId = user._id;
   
   // const { _id } = useSelector((state) => state.user);
@@ -67,15 +69,14 @@ const MyPostWidget = ({ picturePath }) => {
     }   
 }
 
-  const handlePost = async (e) => {
-    e.preventDefault()
+  const handlePost = async () => {
     const formData = new FormData();
     formData.append("posterId", userId);
     formData.append("message", message);
     formData.append("image", imageData);
 
-    const response = await fetch(`http://localhost:5001/api`, {
-      // const response = await fetch(`https://friendly-post-service.onrender.com/api`, {
+    // const response = await fetch(`http://localhost:5001/api`, {
+    const response = await fetch(`https://friendly-post-service.onrender.com/api`, {
       method: "POST",
       // headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -85,8 +86,23 @@ const MyPostWidget = ({ picturePath }) => {
     // dispatch(setPosts({ posts }));
     setImage(null);
     setMessage("");
+    setIsPosting(false)
+    getPosts()
   };
 
+  const getPosts = async () => {
+    const response = await fetch("https://friendly-post-service.onrender.com/api", {
+      method: "GET",
+      // headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await response.json();
+    // dispatch(setPosts({ posts: data }));
+  };
+
+  useEffect(() => {
+    getPosts();
+
+  }, []);
   return (
     <WidgetWrapper>
       <FlexBetween gap="1.5rem">
@@ -197,7 +213,10 @@ const MyPostWidget = ({ picturePath }) => {
 
         <Button
           disabled={!message}
-          onClick={handlePost}
+          onClick={() => {
+            setIsPosting(true)
+            handlePost()
+          }}
           style={{
             color: "white",
             backgroundColor: "var(--primary)",
@@ -206,7 +225,9 @@ const MyPostWidget = ({ picturePath }) => {
             cursor:"pointer"
           }}
         >
-          POST
+          {isPosting ?
+          <Spinner size="sm"/>
+          : <span>POST</span>}
         </Button>
       </FlexBetween>
     </WidgetWrapper>
