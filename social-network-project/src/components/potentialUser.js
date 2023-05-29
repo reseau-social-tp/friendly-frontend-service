@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 import "../styles/users.css"
 const UserBox = ({ user, pic, list, followMethod, unFollowMethod }) => (
     <div className="user-item">
-        <img src={pic} alt='profile' className='user-img'/>
+        <img src={user.avatar} alt='profile' className='user-img'/>
         <Typography margin="0.5rem 0" >{user.username}</Typography>
         <div className="user-buttons">
             {

@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import WidgetWrapper from '../components/WidgetWrapper';
 import {
     Edit,
   } from "@mui/icons-material";
-import profile from "../assets/images/toko.jpg"
 
+import _ from "lodash";
 import "../styles/profile.css"
 
 // React modules style
@@ -16,16 +16,21 @@ import ContainerC from '../components/Container';
 import ProfilePic from '../components/Setting/ProfilePicture';
 import ProfileInfo from '../components/Setting/ProfileInformations';
 import { Box, useMediaQuery } from '@mui/material';
-import MyPostWidget from '../components/widgets/MyPostWidget';
+import MyPostWidget from "../components/widgets/MyPostWidget";
 import PostsWidget from '../components/widgets/PostsWidget';
-function MyProfile(props) {
+import { Spinner } from 'react-bootstrap';
+
+function MyProfile({match}) {
     
-    const user = JSON.parse(localStorage.getItem("user"))
+    const loggedUser = JSON.parse(localStorage.getItem("user"))
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
     // States for registration
 
     const [image, setImage] = useState('');
+    const [user, setUser] = useState({});
     
+    const {id} = useParams();
+
      const generateError = (err) =>
      toast.error(err, {
          position: "top-right",
@@ -47,17 +52,33 @@ function MyProfile(props) {
          theme: "colored",
      })
 
+     const getUser = async () => {
+        const response = await fetch(
+          `https://social-network-auth-service.onrender.com/api/user/${id}`,
+          {
+            method: "GET"
+          }
+        );
+        const data = await response.json();
+        setUser(data.user)
+      };
+     
+    useEffect(() => {
+        getUser();
+    }, []);
 
     return (
+        _.isEmpty(user)  ?
+        <Spinner/>:
         <Box flexBasis={isNonMobileScreens ? "42%" : undefined}
             mt={0}
             sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems:"center", width: "100vw", height: "100%"}}
         >
             <Box className='setting-container'>
                 <div className='setting-content'>
-                    <div className='setting-banner'>
+                    <div className='setting-banner' style={{backgroundImage: `url(${user.banner})`, backgroundRepeat: "no-repeat", backgroundSize: 'cover'}}>
                         <ContainerC component={<div className='setting-profile'>
-                            <img src={profile} alt='profile pic' className='profile-picture'/> 
+                            <img src={user.avatar} alt='profile pic' className='profile-picture'/> 
                         </div>} formToDisplay={<ProfilePic/>} heading="Profile Picture"/>
                     </div>
                     <div className='setting-info'>
@@ -66,7 +87,7 @@ function MyProfile(props) {
                     </div>
                     <div className='infos'>
                         <h1>{user.username}</h1>
-                        <h3>12 friends</h3>
+                        <h3>{user.followers.length} followers - {user.following.length} Following</h3>
                     </div>
                 </div>
                 <ToastContainer/>
@@ -88,9 +109,14 @@ function MyProfile(props) {
             </Box>
 
             <Box flexBasis={isNonMobileScreens ? "50%" : undefined}
+                mt={isNonMobileScreens ? undefined : "2rem"}
             >
-                <MyPostWidget picturePath={profile} />
-                <PostsWidget userId={user._id} />
+                {
+                    user._id !== loggedUser._id ? 
+                    <></>:
+                    <MyPostWidget/>
+                }
+                <PostsWidget user={user} isProfile={true} />
             </Box>
         </Box>
         </Box>

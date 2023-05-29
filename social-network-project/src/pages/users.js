@@ -3,15 +3,7 @@ import { useEffect, useState } from "react";
 import { Box, CircularProgress, Typography, useMediaQuery } from "@mui/material";
 import userDefault from "../assets/images/user_default.png"
 
-import UserWidget from "../components/widgets/UserWidget";
-import MyPostWidget from "../components/widgets/MyPostWidget";
-import PostsWidget from "../components/widgets/PostsWidget";
-import AdvertWidget from "../components/widgets/AdvertWidget";
-import RelatedToListWidget from "../components/widgets/RelatedToListWidget";
 import HomeSidebar from "../components/HomeSidebar";
-import WidgetWrapper from '../components/WidgetWrapper';
-import { Button } from 'react-bootstrap';
-import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import UserBox from '../components/potentialUser';
 
@@ -24,13 +16,13 @@ export default function Users(props) {
     const [isLoading, setIsLoading] = useState(false);
     
     const getUsers = async () => {
-        // const response = await fetch(`http://localhost:5000/api/users/`, {
-        const response = await fetch("https://social-network-auth-service.onrender.com/api/users", {
+        // const response = await fetch(`http://localhost:5000/api/users/${loggedUser._id}`, {
+        const response = await fetch(`https://social-network-auth-service.onrender.com/api/users/${loggedUser._id}`, {
         method: "GET"
         // headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
-        console.log(data.users)
+        console.log(data)
         console.log(loggedUser.username)
         setUsers(data.users);
 
@@ -138,7 +130,7 @@ export default function Users(props) {
                         className="users-container">
                             {
                                 isLoading ?
-                                <UserBox.Placeholder count={20}/>:
+                                <UserBox.Placeholder count={12}/>:
                                 users.map((user) => (
                                     <UserBox user={user} pic={userDefault} list={followings} followMethod={follow} unFollowMethod={unFollow}/>
                                     // <div className="user-item">

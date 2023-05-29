@@ -107,7 +107,7 @@ const PostWidget = ({
   >
     <Friend
       friendId={postUserId}
-      userPicturePath={img}
+      userPicturePath={img2}
     />
     {image[0] !== "null" ?
     (
@@ -128,7 +128,7 @@ const PostWidget = ({
       </>
     )
     : (
-      <div onClick={() =>{
+      <div onClick={() => {
             var c = randomColor()
               setColor(c)
           }} className="no-image-post" style={{width:"100%",height:"20rem", backgroundColor:color,display:"flex", margin:"1rem 0",justifyContent:"center", alignItems:"center"}}>

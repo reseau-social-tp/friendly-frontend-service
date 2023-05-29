@@ -26,7 +26,8 @@ function App() {
                 <Route path='/log-in' element={<UserLogIn/>}/>
                 <Route path='/' element={<Layout/>}>
                     <Route path='home' element={<Home/>}/>
-                    <Route path='profile' element={<MyProfile/>}/>
+                    {/* <Route path="code/:id" render={(props) => <MyProfile {...props} data={someSliceOfState}} /> } /> */}
+                    <Route path='profile/:id' element={<MyProfile/>}/>
                     <Route path='users' element={<Users/>}/>
                 </Route>
             </Routes>

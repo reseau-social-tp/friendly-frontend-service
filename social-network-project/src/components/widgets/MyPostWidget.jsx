@@ -22,10 +22,11 @@ import WidgetWrapper from "../WidgetWrapper";
 import { useState, useEffect } from "react";
 import imageCompression from 'browser-image-compression';
 import { Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
 // import { setPosts } from "state";
 
-const MyPostWidget = ({ picturePath }) => {
+const MyPostWidget = () => {
   const user = JSON.parse(localStorage.getItem("user"))
 
 
@@ -81,8 +82,8 @@ const MyPostWidget = ({ picturePath }) => {
       // headers: { Authorization: `Bearer ${token}` },
       body: formData,
     });
-    const posts = await response.json();
-    console.log(posts);
+    const post = await response.json();
+    console.log(post);
     // dispatch(setPosts({ posts }));
     setImage(null);
     setMessage("");
@@ -106,7 +107,9 @@ const MyPostWidget = ({ picturePath }) => {
   return (
     <WidgetWrapper>
       <FlexBetween gap="1.5rem">
-        <UserImage image={picturePath} />
+        <Link to={`/profile/${user._id}`} style={{textDecoration:"none"}}>
+          <UserImage image={user.avatar} />
+        </Link>
         <InputBase
           placeholder="What's on your mind..."
           onChange={(e) => setMessage(e.target.value)}

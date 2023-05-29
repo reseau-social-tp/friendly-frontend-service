@@ -1,71 +1,51 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import PostBoxPlaceholder from "../potentialPost";
 // import { useDispatch, useSelector } from "react-redux";
 // import { setPosts } from "state";
 import PostWidget from "./PostWidget";
 
-const PostsWidget = ({ userId, isProfile = false }) => {
-  // const dispatch = useDispatch();
-  // const posts = [
-  //   {
-  //     _id:1,
-  //     userId:1,
-  //     name:"A",
-  //     description:"ASASASAS",
-  //     location:"Yaounde",
-  //     picturePath:img2,
-  //     userPicturePath:img2,
-  //     likes:20,
-  //     comments:["Hi man","Ustanak","Hello nigga","Chipmunk"]
-  //   },
-  //   {
-  //     _id:2,
-  //     userId:2,
-  //     name:"A",
-  //     description:"Here in town",
-  //     location:"Douala",
-  //     picturePath:img2,
-  //     userPicturePath:img2,
-  //     likes:1120,
-  //     comments:[],
-  //   },
-    
-  // ]
-  // const posts = useSelector((state) => state.posts);
-  // const token = useSelector((state) => state.token);
+const PostsWidget = ({ user, isProfile }) => {
+  
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  
   const getPosts = async () => {
-    const response = await fetch("https://friendly-post-service.onrender.com/api", {
+    var response = {}
+    if (isProfile){
+      console.log(user)
+      // response = await fetch(`http://localhost:5001/api/user/${user._id}`, {
+        response = await fetch(`https://friendly-post-service.onrender.com/api/user/${user._id}`, {
       method: "GET",
       // headers: { Authorization: `Bearer ${token}` },
-    });
+      });
+    }
+    else{
+      console.log("Here 2")
+      var followingsList = []
+      for (let index = 0; index < user.following.length; index++) {
+        const element = user.following[index]._id;
+        followingsList.push(element)
+      }
+      
+      console.log(followingsList)
+
+      // response = await fetch(`http://localhost:5001/api/${followingsList}`, {
+        response = await fetch(`https://friendly-post-service.onrender.com/api/${followingsList}`, {
+        method: "GET"
+        // headers: { Authorization: `Bearer ${token}` },
+      });
+    }
     const data = await response.json();
-    setPosts(data);
+    console.log(data);
+    setPosts(data.posts);
     setIsLoading(false);
     // dispatch(setPosts({ posts: data }));
   };
 
-  // const getUserPosts = async () => {
-  //   const response = await fetch(
-  //     `http://localhost:3001/posts/${userId}/posts`,
-  //     {
-  //       method: "GET",
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     }
-  //   );
-  //   const data = await response.json();
-  //   dispatch(setPosts({ posts: data }));
-  // };
-
   useEffect(() => {
     setIsLoading(true)
-    if (isProfile) {
-      // getUserPosts();
-    } else {
       getPosts();
-    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

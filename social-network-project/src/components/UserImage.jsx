@@ -1,15 +1,13 @@
 import { Box } from "@mui/material";
-import img from "../assets/images/toko.jpg"
 
-const UserImage = ({ image, size = "60px" }) => {
+const UserImage = ({ image, size = "3rem" }) => {
   return (
-    <Box width={size} height={size}>
+    <Box>
       <img
-        style={{ objectFit: "cover", borderRadius: "50%" }}
-        width={size}
-        height={size}
+        class="user-avatar"
+        style={{ objectFit: "cover", width: size }}
         alt="user"
-        src={img}
+        src={image}
       />
     </Box>
   );

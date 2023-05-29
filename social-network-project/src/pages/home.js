@@ -1,19 +1,22 @@
 import '../styles/home.css';
 import { Box, useMediaQuery } from "@mui/material";
-import userDefault from "../assets/images/user_default.png"
 
-import UserWidget from "../components/widgets/UserWidget";
 import MyPostWidget from "../components/widgets/MyPostWidget";
 import PostsWidget from "../components/widgets/PostsWidget";
 import AdvertWidget from "../components/widgets/AdvertWidget";
 import RelatedToListWidget from "../components/widgets/RelatedToListWidget";
 import HomeSidebar from "../components/HomeSidebar";
+import { useEffect } from 'react';
 
 export default function Home(props) {
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
     
-    const user = JSON.parse(localStorage.getItem("user"))
+    var user = JSON.parse(localStorage.getItem("user"))
     // console.log(user)
+    
+    useEffect(() => {
+        // user = JSON.parse(localStorage.getItem("user"))
+    }, []);
     return (
         <Box 
         width="100%"
@@ -40,8 +43,8 @@ export default function Home(props) {
                 mt={isNonMobileScreens ? undefined : "2rem"}
                 // height= {isNonMobileScreens? "100%": "100vh"}
             >
-                <MyPostWidget picturePath={userDefault} />
-                <PostsWidget userId={user._id} />
+                <MyPostWidget/>
+                <PostsWidget user={user} isProfile={false}/>
             </Box>
 
             {isNonMobileScreens && (

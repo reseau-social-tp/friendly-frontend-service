@@ -101,7 +101,7 @@ const Navbar = () => {
               style={{display:"flex",flexDirection:"row"}}>
               
               <div class="profile-info">
-              <Link to="/profile" style={{textDecoration:"none", color:"var(--secondary)"}}><img class="user-avatar" src={userIcon} alt="User icon" width={"50px"}/></Link>
+              <Link to={`/profile/${user._id}`} style={{textDecoration:"none", color:"var(--secondary)"}}><img class="user-avatar" src={user.avatar} alt="User icon" width={"50px"}/></Link>
               </div>
               {/* <Select
                 sx={{

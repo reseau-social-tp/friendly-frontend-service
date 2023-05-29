@@ -1,5 +1,5 @@
 import {React, useEffect} from "react";
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { NavLink } from "react-router-dom";
 import navLinks from "../../assets/navLinks";
@@ -9,7 +9,7 @@ import "./style.css";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const HomeSidebar = () => {
-  var user = {}
+  const user = JSON.parse(localStorage.getItem("user"))
 
   const navigate = useNavigate()
   // useEffect(() => {
@@ -25,15 +25,15 @@ const HomeSidebar = () => {
     localStorage.removeItem("user")
   }
 
-  user = JSON.parse(localStorage.getItem("user"))
-  
   return (
       
         <div className="sidebar">
-          <div className="sidebarRow" onClick={() => navigate("/profile")}>
-            <img class="user-avatar" src={userIcon} alt="User icon"/>
-            <h4 style={{fontSize:"1.5rem"}}>{user.username}</h4>
-          </div>
+          <Link to={`/profile/${user._id}`} style={{textDecoration:"none"}}>
+            <div className="sidebarRow" onClick={() => navigate("/profile")}>
+              <img class="user-avatar" src={user.avatar} alt="User icon"/>
+              <h4 style={{fontSize:"1.5rem"}}>{user.username}</h4>
+            </div>
+          </Link>
           {navLinks.map((item, index) => (
                 <NavLink
                   to={item.path}

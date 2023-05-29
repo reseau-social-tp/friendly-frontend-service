@@ -1,7 +1,7 @@
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 // import { useDispatch, useSelector } from "react-redux";
-import { useNavigate,  } from "react-router-dom";
+import { Link, useNavigate,  } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
@@ -73,7 +73,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
     const getUsers = async () => {
       // const response = await fetch(`http://localhost:5000/api/users/`, {
-      const response = await fetch("https://social-network-auth-service.onrender.com/api/users", {
+      const response = await fetch(`https://social-network-auth-service.onrender.com/api/users/${user._id}`, {
       method: "GET"
       // headers: { Authorization: `Bearer ${token}` },
       });
@@ -134,8 +134,10 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     _.isEmpty(friend)  ?
     <FriendBoxPlaceholder/>:
     <FlexBetween>
-      <FlexBetween gap="1rem">
-        <UserImage image={userPicturePath} size="55px" />
+      <FlexBetween gap="1rem">        
+        <Link to={`/profile/${friend._id}`} style={{textDecoration:"none"}}>
+          <UserImage image={friend.avatar}/>
+        </Link>
         <Box
           onClick={() => {
             navigate(`/profile/${friendId}`);
