@@ -26,9 +26,7 @@ import { Link } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
 // import { setPosts } from "state";
 
-const MyPostWidget = () => {
-  const user = JSON.parse(localStorage.getItem("user"))
-
+const MyPostWidget = ({ user, isProfile}) => {
 
   // const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
@@ -76,8 +74,8 @@ const MyPostWidget = () => {
     formData.append("message", message);
     formData.append("image", imageData);
 
-    // const response = await fetch(`http://localhost:5001/api`, {
-    const response = await fetch(`https://friendly-post-service.onrender.com/api`, {
+    const response = await fetch(`http://localhost:5001/api`, {
+    // const response = await fetch(`https://friendly-post-service.onrender.com/api`, {
       method: "POST",
       // headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -88,22 +86,23 @@ const MyPostWidget = () => {
     setImage(null);
     setMessage("");
     setIsPosting(false)
-    getPosts()
+    // getPosts()
   };
 
-  const getPosts = async () => {
-    const response = await fetch("https://friendly-post-service.onrender.com/api", {
-      method: "GET",
-      // headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await response.json();
-    // dispatch(setPosts({ posts: data }));
-  };
+  // const getPosts = async () => {
+  //   const response = await fetch("http://localhost:5001/api", {
+  //     // const response = await fetch("https://friendly-post-service.onrender.com/api", {
+  //     method: "GET",
+  //     // headers: { Authorization: `Bearer ${token}` },
+  //   });
+  //   const data = await response.json();
+  //   // dispatch(setPosts({ posts: data }));
+  // };
 
-  useEffect(() => {
-    getPosts();
+  // useEffect(() => {
+  //   getPosts();
 
-  }, []);
+  // }, []);
   return (
     <WidgetWrapper>
       <FlexBetween gap="1.5rem">

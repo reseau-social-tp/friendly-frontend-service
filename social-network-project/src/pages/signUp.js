@@ -10,7 +10,7 @@ import Descriptor from "../components/Descriptor"
 import FormValidation from "../components/FormValidation"
 
 // Axios import
-import  axios  from "axios";
+import  instanceAuth  from "../axiosAuthService";
 
 // Styles
 import '../styles/signUp.css';
@@ -128,7 +128,8 @@ export default function UserSignUp() {
         };
 
         // Axios API call
-        axios.post('https://social-network-auth-service.onrender.com/api/register', values).then((response) => {
+        instanceAuth.post('/api/register', values)
+        .then((response) => {
             setIsLoading(false);
             console.log(response)
             localStorage.setItem('user', JSON.stringify(response.data.user))

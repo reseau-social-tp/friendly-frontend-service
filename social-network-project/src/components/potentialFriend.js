@@ -11,7 +11,7 @@ const FriendBoxPlaceholder = ({
   count = 1
 }) =>
   _.range(count).map((index) => (
-    <FlexBetween>
+    <FlexBetween key={index}>
         <FlexBetween gap="1rem">
             <Skeleton circle width={"45px"} height={"45px"}/>
             <Box>

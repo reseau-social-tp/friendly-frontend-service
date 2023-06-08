@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 // Axios import
-import  axios from "axios";
+import  instanceAuth from "../axiosAuthService";
 
 // Usefull components
 import Entry from "../components/Entry"
@@ -103,8 +103,8 @@ export default function UserLogIn() {
         };
 
         // Axios API call
-        // axios.post('http://localhost:5000/api/login', values).then((response) => {
-        axios.post('https://social-network-auth-service.onrender.com/api/login', values).then((response) => {
+        instanceAuth.post('/api/login', values)
+        .then((response) => {
             setIsLoading(false);
             
             localStorage.setItem('user', JSON.stringify(response.data.user))

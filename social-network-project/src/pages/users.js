@@ -16,69 +16,31 @@ export default function Users(props) {
     const [isLoading, setIsLoading] = useState(false);
     
     const getUsers = async () => {
-        // const response = await fetch(`http://localhost:5000/api/users/${loggedUser._id}`, {
-        const response = await fetch(`https://social-network-auth-service.onrender.com/api/users/${loggedUser._id}`, {
+        const response = await fetch(`http://localhost:5000/api/users/${loggedUser._id}`, {
+        // const response = await fetch(`https://social-network-auth-service.onrender.com/api/users/${loggedUser._id}`, {
         method: "GET"
         // headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
-        console.log(data)
-        console.log(loggedUser.username)
         setUsers(data.users);
+        
+        const res = await fetch(`http://localhost:5000/api/user/${loggedUser._id}`, {
+            // const res = await fetch(`https://social-network-auth-service.onrender.com/api/user/${loggedUser._id}`, {
+            method: "GET"
+        // headers: { Authorization: `Bearer ${token}` },
+        });
+        const data2 = await res.json();
+        localStorage.setItem("user", JSON.stringify(data2.user))
 
         var array = []
-        for (let index = 0; index < data.users.length; index++) {
-            if (data.users[index]._id === loggedUser._id) {
-                localStorage.setItem("user", JSON.stringify(data.users[index]))
-                for (let i = 0; i < data.users[index].following.length; i++) {
-                    array.push(data.users[index].following[i]);
-                    
-                }
-            }
-            
+        for (let index = 0; index < data2.user.following.length; index++) {
+            array.push(data2.user.following[index]._id);
         }
+        
+        console.log(array)
         setFollowings(array)
         setIsLoading(false)
         // dispatch(setPosts({ posts: data }));
-    };
-    const follow = async (id) => {
-        // const response = await fetch(`http://localhost:5000/api/user/${id}/follow`, {
-        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/follow`, {
-        method: "PATCH",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },	
-
-        // Fields that to be updated are passed
-        body: JSON.stringify({
-            _id: loggedUser._id
-        })
-        // headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await response.json();
-        console.log(data)
-        // setUsers(data.users);
-        // dispatch(setPosts({ posts: data }));
-        getUsers()
-        setIsFollowing(false)
-    };
-    const unFollow = async (id) => {
-        // const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
-        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
-        method: "PATCH",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-        },	
-
-        body: JSON.stringify({
-            _id: loggedUser._id
-        })
-        });
-        const data = await response.json();
-        console.log(data)
-        getUsers()
     };
   
     useEffect(() => {
@@ -130,36 +92,9 @@ export default function Users(props) {
                         className="users-container">
                             {
                                 isLoading ?
-                                <UserBox.Placeholder count={12}/>:
+                                <UserBox.Placeholder count={9}/>:
                                 users.map((user) => (
-                                    <UserBox user={user} pic={userDefault} list={followings} followMethod={follow} unFollowMethod={unFollow}/>
-                                    // <div className="user-item">
-                                    //     <img src={userDefault} alt='profile' className='user-img'/>
-                                    //     <Typography margin="0.5rem 0" >{user.username}</Typography>
-                                    //     <div className="user-buttons">
-                                    //         {
-                                    //            followings.includes(user._id) ?
-                                    //             <Button variant="danger" style={{width:"100%",margin:"0.1rem 0"}} onClick={() => {
-                                    //             follow(user._id)
-                                    //             const index = users.indexOf(user);
-                                    //             console.log(followings)
-                                    //             // if (index > -1) {
-                                    //             //     var array = users 
-                                    //             //     array.splice(index, 1)
-                                    //             //     setUsers(array); 
-                                    //             // }
-                                    //         } }>Un Follow</Button>:
-                                    //         <Button variant="outline-primary" style={{width:"100%",margin:"0.1rem 0"}} onClick={() => {
-                                    //             setIsFollowing(true)
-                                    //             follow(user._id)
-                                    //         } }>
-                                    //             {isFollowing ? 
-                                    //             <CircularProgress/>:
-                                    //             <>Follow</>}</Button>
-                                    //         }
-                                        
-                                    //     </div>
-                                    // </div>
+                                    <UserBox user={user} list={followings} getUsers={getUsers}/>
                                 ))
 
                             }

@@ -13,6 +13,7 @@ const PostBoxPlaceholder = ({
   _.range(count).map((index) => (
     <WidgetWrapper 
       m="2rem 0"
+      key={index}
     >
         <FlexBetween>
             <FlexBetween gap="1rem">

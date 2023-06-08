@@ -1,4 +1,4 @@
-import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
+import { Menu, MoreVert, PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 // import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate,  } from "react-router-dom";
@@ -10,16 +10,15 @@ import _ from "lodash";
 import FriendBoxPlaceholder from "./potentialFriend";
 
 import { formatDate } from "../utils";
-const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
-  // const dispatch = useDispatch();
+import ContainerC from "./Container";
+import ProfilePic from "./Setting/ProfilePicture";
+import PostAction from "./Setting/PostActions";
+const Friend = ({ friendId, isProfile, postId, postImage, createdAt }) => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"))
   const [followings, setFollowings] = useState([]);
   const [isFollowings, setIsFollowings] = useState(false);
   const [date, setDate] = useState("");
-  // const { _id } = useSelector((state) => state.user);
-  // const token = useSelector((state) => state.token);
-  // const friends = useSelector((state) => state.user.friends);
   
     const [friend, setFriend] = useState({});
     const [isFriend, setIsFriend] = useState(false);
@@ -32,8 +31,9 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const secondaryDiluted = "var(--secondary-diluted)";
   
     const follow = async (id) => {
-      const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/follow`, {
-          // const response = await fetch("https://social-network-auth-service.onrender.com/users", {
+
+      const response = await fetch(`http://localhost:5000/api/user/${id}/follow`, {
+        // const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/follow`, {
       method: "PATCH",
       headers: {
           Accept: "application/json",
@@ -54,49 +54,48 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   };
   
     const getFriend = async () => {
-      const response = await fetch(
-        `https://social-network-auth-service.onrender.com/api/user/${friendId}`,
-        {
-          method: "GET"
-        }
-      );
-      const data = await response.json();
-      setFriend(data.user)
-      
-      var array = []
-      for (let index = 0; index < user.following.length; index++) {
-          if (user.following[index]._id === friend._id) {
+      if (user._id !== friendId) {
+        for (let index = 0; index < user.following.length; index++) {
+          if (user.following[index]._id === friendId) {
               setIsFriend(true)
-          } 
+              setFriend(user.following[index])
+            } 
+        }
+      }else{
+        setFriend(user)
       }
-    };
+    }
 
     const getUsers = async () => {
-      // const response = await fetch(`http://localhost:5000/api/users/`, {
-      const response = await fetch(`https://social-network-auth-service.onrender.com/api/users/${user._id}`, {
+      const response = await fetch(`http://localhost:5000/api/users/${user._id}`, {
+      // const response = await fetch(`https://social-network-auth-service.onrender.com/api/users/${user._id}`, {
       method: "GET"
       // headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
       setUsers(data.users);
       getFriend()
-      var array = []
-        for (let index = 0; index < data.users.length; index++) {
-            if (data.users[index]._id === user._id) {
-                localStorage.setItem("user", JSON.stringify(data.users[index]))
-                for (let i = 0; i < data.users[index].following.length; i++) {
-                    array.push(data.users[index].following[i]);
-                    
-                }
-            }
-            
-        }
-        setFollowings(array)
+      
+      
+      const res = await fetch(`http://localhost:5000/api/user/${user._id}`, {
+        // const res = await fetch(`https://social-network-auth-service.onrender.com/api/user/${user._id}`, {
+        method: "GET"
+    // headers: { Authorization: `Bearer ${token}` },
+    });
+    const data2 = await res.json();
+    localStorage.setItem("user", JSON.stringify(data2.user))
+
+    var array = []
+    for (let index = 0; index < data2.user.following.length; index++) {
+        array.push(data2.user.following[index]._id);
+    }
+    
+    setFollowings(array)
       // dispatch(setPosts({ posts: data }));
   };
   const unFollow = async (id) => {
-    // const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
-      const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
+    const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
+      // const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
         method: "PATCH",
         headers: {
           Accept: "application/json",
@@ -113,12 +112,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
       setIsFollowings(false)
     };
     const getDate = async () => {
-      if (!(_.isEmpty(friend))){
-        // console.log(friend.createdAt)
-        setDate(formatDate(Date.parse(friend.createdAt)))
-        
-
-      }
+        setDate(formatDate(Date.parse(createdAt)))
     };
       
       useEffect(() => {
@@ -129,15 +123,16 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
           getDate()
         }
 
-  }, [friend]);
+      }, [friend]);
   return (
     _.isEmpty(friend)  ?
     <FriendBoxPlaceholder/>:
     <FlexBetween>
-      <FlexBetween gap="1rem">        
+      <FlexBetween gap="1rem">     
         <Link to={`/profile/${friend._id}`} style={{textDecoration:"none"}}>
           <UserImage image={friend.avatar}/>
         </Link>
+        
         <Box
           onClick={() => {
             navigate(`/profile/${friendId}`);
@@ -162,25 +157,43 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
           </Typography>
         </Box>
       </FlexBetween>
-      {
-        isFollowings?
+
+      { isProfile && user._id === friend._id?
+        (
+          <ContainerC component={<IconButton
+            onClick={() => {
+              // setIsFollowings(true)
+              // unFollow(friendId)
+            }}
+            sx={{ backgroundColor: secondaryDiluted, p: "0.6rem" }}>
+          
+            <MoreVert sx={{ color: secondary }} />
+          </IconButton>} formToDisplay={<PostAction image={postImage} postId={postId}/>} heading="Post actions"/>
+          ):
+        (isFollowings?
         <Spinner size="sm"/>:
-        <IconButton
-          // onClick={() => patchFriend()}
-          sx={{ backgroundColor: secondaryDiluted, p: "0.6rem" }}
-          >
-          {followings.includes(friendId)? (
-            <PersonRemoveOutlined sx={{ color: primary }} onClick={() => {
+        isFriend?
+          <IconButton
+            onClick={() => {
               setIsFollowings(true)
               unFollow(friendId)
-            }}/>
-          ) : (
-            <PersonAddOutlined sx={{ color: secondary }} onClick={() => {
+            }}
+            sx={{ backgroundColor: secondaryDiluted, p: "0.6rem" }}>
+          
+            <PersonRemoveOutlined sx={{ color: primary }} />
+          </IconButton>
+           : 
+           <IconButton
+             onClick={() => {
               setIsFollowings(true)
               follow(friendId)
-            }}/>
-          )}
-        </IconButton>
+            
+             }}
+             sx={{ backgroundColor: secondaryDiluted, p: "0.6rem" }}>
+           
+             <PersonAddOutlined sx={{ color: secondary }} />
+           </IconButton>
+        )
       }
     </FlexBetween>
   );

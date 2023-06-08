@@ -12,7 +12,6 @@ export default function Home(props) {
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
     
     var user = JSON.parse(localStorage.getItem("user"))
-    // console.log(user)
     
     useEffect(() => {
         // user = JSON.parse(localStorage.getItem("user"))
@@ -43,7 +42,7 @@ export default function Home(props) {
                 mt={isNonMobileScreens ? undefined : "2rem"}
                 // height= {isNonMobileScreens? "100%": "100vh"}
             >
-                <MyPostWidget/>
+                <MyPostWidget user={user} isProfile={false}/>
                 <PostsWidget user={user} isProfile={false}/>
             </Box>
 

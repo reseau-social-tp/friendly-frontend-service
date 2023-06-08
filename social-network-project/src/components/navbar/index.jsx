@@ -37,14 +37,23 @@ const Navbar = () => {
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
   const user = JSON.parse(localStorage.getItem("user"))
+  const [toggle, setToggle] = useState(false);
 
   const logout = () => {
     localStorage.removeItem("user")
     navigate("/log-in")
   }
   return (
-    <FlexBetween padding="1rem 6%" class="header" backgroundColor={"white"}>
-      <FlexBetween gap="1.75rem" class="header-left">
+    <FlexBetween padding="1rem 6%" className="header" backgroundColor={"white"}>
+      <div className="chat-box" style={toggle?{display:"flex"}:{display:"none"}}>
+        <div className="list">
+
+        </div>
+        <div className="conversation">
+
+        </div>
+      </div>
+      <FlexBetween gap="1.75rem" className="header-left">
         <Link to="/home"><img src={logo} alt="Logo" className="logo-icon" style={{height:"2.5rem", padding:"0 1rem"}} /></Link>
         {isNonMobileScreens ?
           <FlexBetween
@@ -101,7 +110,7 @@ const Navbar = () => {
               style={{display:"flex",flexDirection:"row"}}>
               
               <div class="profile-info">
-              <Link to={`/profile/${user._id}`} style={{textDecoration:"none", color:"var(--secondary)"}}><img class="user-avatar" src={user.avatar} alt="User icon" width={"50px"}/></Link>
+              <Link to={`/profile/${user._id}`} style={{textDecoration:"none", color:"var(--secondary)"}}><img class="user-avatar" src={user.avatar} alt="User icon"/></Link>
               </div>
               {/* <Select
                 sx={{

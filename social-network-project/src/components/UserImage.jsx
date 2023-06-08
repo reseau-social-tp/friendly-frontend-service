@@ -5,7 +5,7 @@ const UserImage = ({ image, size = "3rem" }) => {
     <Box>
       <img
         class="user-avatar"
-        style={{ objectFit: "cover", width: size }}
+        style={{ objectFit: "cover", width: size, height: size }}
         alt="user"
         src={image}
       />

@@ -14,30 +14,27 @@ const PostsWidget = ({ user, isProfile }) => {
     var response = {}
     if (isProfile){
       console.log(user)
-      // response = await fetch(`http://localhost:5001/api/user/${user._id}`, {
-        response = await fetch(`https://friendly-post-service.onrender.com/api/user/${user._id}`, {
+      response = await fetch(`http://localhost:5001/api/user/${user._id}`, {
+        // response = await fetch(`https://friendly-post-service.onrender.com/api/user/${user._id}`, {
       method: "GET",
       // headers: { Authorization: `Bearer ${token}` },
       });
     }
+
     else{
-      console.log("Here 2")
       var followingsList = []
       for (let index = 0; index < user.following.length; index++) {
         const element = user.following[index]._id;
         followingsList.push(element)
       }
       
-      console.log(followingsList)
-
-      // response = await fetch(`http://localhost:5001/api/${followingsList}`, {
-        response = await fetch(`https://friendly-post-service.onrender.com/api/${followingsList}`, {
+      response = await fetch(`http://localhost:5001/api/${followingsList}`, {
+        // response = await fetch(`https://friendly-post-service.onrender.com/api/${followingsList}`, {
         method: "GET"
         // headers: { Authorization: `Bearer ${token}` },
       });
     }
     const data = await response.json();
-    console.log(data);
     setPosts(data.posts);
     setIsLoading(false);
     // dispatch(setPosts({ posts: data }));
@@ -51,7 +48,7 @@ const PostsWidget = ({ user, isProfile }) => {
   return (
     <>
     {isLoading ? (
-        <PostBoxPlaceholder count={5}/>
+        <PostBoxPlaceholder count={2}/>
       ):(
         posts.map(
           ({
@@ -60,6 +57,9 @@ const PostsWidget = ({ user, isProfile }) => {
             pictures,
             message,
             comments,
+            likers,
+            createdAt,
+
           }) => (
             <PostWidget
               postId={_id}
@@ -67,6 +67,9 @@ const PostsWidget = ({ user, isProfile }) => {
               image={pictures}
               message={message}
               comments={comments}
+              likers={likers}
+              createdAt={createdAt}
+              isProfile={isProfile}
             />
           )
         )

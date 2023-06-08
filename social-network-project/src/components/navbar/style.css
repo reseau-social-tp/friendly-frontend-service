@@ -106,8 +106,9 @@ border-radius: 50%;
 }
 .user-avatar {
     background-color: rgb(216, 216, 216);
-border-radius: 50%;
-width: 2rem;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 .profile-info h4 {
@@ -168,7 +169,30 @@ width: 2rem;
     background-color: var(--primary-diluted);
     
 }
-  
+
+.chat-box{
+    z-index: 1000;
+    width: 50vw;
+    height: 70vh;
+    box-shadow: var(--shadow-4);
+    background-color: red;
+    position: fixed;
+    right: 8rem;
+    bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chat-box .list{
+    width: 40%;
+    height: 100%;
+    background-color: green;
+}
+.chat-box .conversation{
+    width: 60%;
+    height: 100%;
+    background-color: yellow;
+}
 
 @media (max-width: 768px) {
     .header-input input {

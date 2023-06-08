@@ -16,17 +16,18 @@ import "../../styles/postWidget.css"
 // import { useDispatch, useSelector } from "react-redux";
 // import { setPost } from "state";
 
-
-import img from "../../assets/images/user_default.png"
-import img2 from "../../assets/images/network-1.jpg"
 import { Spinner } from "react-bootstrap";
 import PostBoxPlaceholder from "../potentialPost";
+
 const PostWidget = ({
   postId,
   postUserId,
   image,
   message,
   comments,
+  likers,
+  createdAt,
+  isProfile
 }) => {
   const loggedUser = JSON.parse(localStorage.getItem("user"))
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
@@ -34,7 +35,15 @@ const PostWidget = ({
   const [isLiked, setIsLiked] = useState(false);
   const [isLiking, setIsLiking] = useState(false);
   const [isShared, setIsShared] = useState(false);
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState({
+                          postId: postId,
+                          posterId: postUserId,
+                          pictures: image,
+                          message: message,
+                          comments: comments,
+                          likers: likers,
+                          createdAt: createdAt,
+                      });
   const [color, setColor] = useState("");
   // const dispatch = useDispatch();
   // const token = useSelector((state) => state.token);
@@ -48,7 +57,7 @@ const PostWidget = ({
 
   const patchLike = async () => {
     if (isLiked) {
-      const response = await fetch(`https://friendly-post-service.onrender.com/api/unlike-post/${postId}`, {
+      await fetch(`http://localhost:5001/api/unlike-post/${postId}`, {
         method: "PATCH",
         headers: {
             Accept: "application/json",
@@ -56,12 +65,10 @@ const PostWidget = ({
         },	
         body: JSON.stringify({ userId: loggedUser._id }),
       });
-      const res = await response.json();
-      console.log(res);
-      // setIsLiked(false)
     }
     else{
-      const response = await fetch(`https://friendly-post-service.onrender.com/api/like-post/${postId}`, {
+      await fetch(`http://localhost:5001/api/like-post/${postId}`, {
+        // await fetch(`https://friendly-post-service.onrender.com/api/like-post/${postId}`, {
         method: "PATCH",
         headers: {
             Accept: "application/json",
@@ -69,14 +76,13 @@ const PostWidget = ({
         },	
         body: JSON.stringify({ userId: loggedUser._id }),
       });
-      const res = await response.json();
-      console.log(res);
     }
     getPost()
   };
   
   const getPost = async () => {
-    const response = await fetch(`https://friendly-post-service.onrender.com/api/${postId}`, {
+    const response = await fetch(`http://localhost:5001/api/post/${postId}`, {
+      // const response = await fetch(`https://friendly-post-service.onrender.com/api/post/${postId}`, {
       method: "GET",
       // headers: { Authorization: `Bearer ${token}` },
     });
@@ -88,27 +94,30 @@ const PostWidget = ({
     // dispatch(setPosts({ posts: data }));
     setIsLiking(false)
   };
+  
   const randomColor = () => {
     var item = colors[Math.floor(Math.random()*colors.length)];
     return item
   };
 
-  
-  
+
   useEffect(() => {
-    getPost();
-  }, [0]);
+      getPost();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    _.isEmpty(post)  ?
+    _.isEmpty(post)?
     <PostBoxPlaceholder/>:
     <WidgetWrapper 
     m="2rem 0"
-  >
-    <Friend
-      friendId={postUserId}
-      userPicturePath={img2}
-    />
+     >
+      <Friend
+        friendId={postUserId}
+        isProfile={isProfile}
+        postId={postId}
+        postImage={image[0]}
+        createdAt={createdAt}
+      />
     {image[0] !== "null" ?
     (
       <>
