@@ -56,8 +56,8 @@ function MyProfile({match}) {
      })
 
      const getUser = async () => {
-        const response = await fetch(`http://localhost:5000/api/user/${id}`,
-        // const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}`,
+        // const response = await fetch(`http://localhost:5000/api/user/${id}`,
+        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}`,
           {
             method: "GET"
           }

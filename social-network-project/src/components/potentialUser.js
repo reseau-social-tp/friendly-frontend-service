@@ -12,8 +12,8 @@ const UserBox = ({ user, list, getUsers }) => {
     const [loading, setLoading] = useState(false);
     
     const follow = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/user/${id}/follow`, {
-        // const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/follow`, {
+        // const response = await fetch(`http://localhost:5000/api/user/${id}/follow`, {
+        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/follow`, {
             method: "PATCH",
             headers: {
                 Accept: "application/json",
@@ -30,8 +30,8 @@ const UserBox = ({ user, list, getUsers }) => {
         setLoading(false)
     };
     const unFollow = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
-        // const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
+        // const response = await fetch(`http://localhost:5000/api/user/${id}/unfollow`, {
+        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
             method: "PATCH",
             headers: {
                 Accept: "application/json",

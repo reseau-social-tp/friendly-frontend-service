@@ -14,8 +14,8 @@ const PostsWidget = ({ user, isProfile }) => {
     var response = {}
     if (isProfile){
       console.log(user)
-      response = await fetch(`http://localhost:5001/api/user/${user._id}`, {
-        // response = await fetch(`https://friendly-post-service.onrender.com/api/user/${user._id}`, {
+      // response = await fetch(`http://localhost:5001/api/user/${user._id}`, {
+        response = await fetch(`https://friendly-post-service.onrender.com/api/user/${user._id}`, {
       method: "GET",
       // headers: { Authorization: `Bearer ${token}` },
       });
@@ -28,8 +28,8 @@ const PostsWidget = ({ user, isProfile }) => {
         followingsList.push(element)
       }
       
-      response = await fetch(`http://localhost:5001/api/${followingsList}`, {
-        // response = await fetch(`https://friendly-post-service.onrender.com/api/${followingsList}`, {
+      // response = await fetch(`http://localhost:5001/api/${followingsList}`, {
+        response = await fetch(`https://friendly-post-service.onrender.com/api/${followingsList}`, {
         method: "GET"
         // headers: { Authorization: `Bearer ${token}` },
       });

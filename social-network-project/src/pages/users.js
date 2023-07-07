@@ -16,16 +16,16 @@ export default function Users(props) {
     const [isLoading, setIsLoading] = useState(false);
     
     const getUsers = async () => {
-        const response = await fetch(`http://localhost:5000/api/users/${loggedUser._id}`, {
-        // const response = await fetch(`https://social-network-auth-service.onrender.com/api/users/${loggedUser._id}`, {
+        // const response = await fetch(`http://localhost:5000/api/users/${loggedUser._id}`, {
+        const response = await fetch(`https://social-network-auth-service.onrender.com/api/users/${loggedUser._id}`, {
         method: "GET"
         // headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
         setUsers(data.users);
         
-        const res = await fetch(`http://localhost:5000/api/user/${loggedUser._id}`, {
-            // const res = await fetch(`https://social-network-auth-service.onrender.com/api/user/${loggedUser._id}`, {
+        // const res = await fetch(`http://localhost:5000/api/user/${loggedUser._id}`, {
+            const res = await fetch(`https://social-network-auth-service.onrender.com/api/user/${loggedUser._id}`, {
             method: "GET"
         // headers: { Authorization: `Bearer ${token}` },
         });
