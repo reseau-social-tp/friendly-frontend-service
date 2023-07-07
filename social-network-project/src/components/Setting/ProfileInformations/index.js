@@ -152,8 +152,8 @@ export const ProfileInfo
     };
     
     const save = async (id) => {
-        const response = await fetch(`http://localhost:5000/api/user/${user._id}`, {
-        // const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
+        // const response = await fetch(`http://localhost:5000/api/user/${user._id}`, {
+        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/unfollow`, {
         method: "PATCH",
         headers: {
           Accept: "application/json",

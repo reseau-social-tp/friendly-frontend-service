@@ -32,8 +32,8 @@ const Friend = ({ friendId, isProfile, postId, postImage, createdAt }) => {
   
     const follow = async (id) => {
 
-      const response = await fetch(`http://localhost:5000/api/user/${id}/follow`, {
-        // const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/follow`, {
+      // const response = await fetch(`http://localhost:5000/api/user/${id}/follow`, {
+        const response = await fetch(`https://social-network-auth-service.onrender.com/api/user/${id}/follow`, {
       method: "PATCH",
       headers: {
           Accept: "application/json",
@@ -67,8 +67,8 @@ const Friend = ({ friendId, isProfile, postId, postImage, createdAt }) => {
     }
 
     const getUsers = async () => {
-      const response = await fetch(`http://localhost:5000/api/users/${user._id}`, {
-      // const response = await fetch(`https://social-network-auth-service.onrender.com/api/users/${user._id}`, {
+      // const response = await fetch(`http://localhost:5000/api/users/${user._id}`, {
+      const response = await fetch(`https://social-network-auth-service.onrender.com/api/users/${user._id}`, {
       method: "GET"
       // headers: { Authorization: `Bearer ${token}` },
       });
@@ -77,8 +77,8 @@ const Friend = ({ friendId, isProfile, postId, postImage, createdAt }) => {
       getFriend()
       
       
-      const res = await fetch(`http://localhost:5000/api/user/${user._id}`, {
-        // const res = await fetch(`https://social-network-auth-service.onrender.com/api/user/${user._id}`, {
+      // const res = await fetch(`http://localhost:5000/api/user/${user._id}`, {
+        const res = await fetch(`https://social-network-auth-service.onrender.com/api/user/${user._id}`, {
         method: "GET"
     // headers: { Authorization: `Bearer ${token}` },
     });

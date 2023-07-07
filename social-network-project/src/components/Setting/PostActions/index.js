@@ -16,8 +16,8 @@ export const PostAction
     
   const deletePost = async () => {
     var response = {}
-    response = await fetch(`http://localhost:5001/api/${postId}`, {
-    // response = await fetch(`https://friendly-post-service.onrender.com/api/${postId}`, {
+    // response = await fetch(`http://localhost:5001/api/${postId}`, {
+    response = await fetch(`https://friendly-post-service.onrender.com/api/${postId}`, {
     method: "DELETE",
     // headers: { Authorization: `Bearer ${token}` },
     });

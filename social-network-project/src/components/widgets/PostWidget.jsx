@@ -57,7 +57,8 @@ const PostWidget = ({
 
   const patchLike = async () => {
     if (isLiked) {
-      await fetch(`http://localhost:5001/api/unlike-post/${postId}`, {
+      // await fetch(`http://localhost:5001/api/unlike-post/${postId}`, {
+        await fetch(`https://friendly-post-service.onrender.com/api/unlike-post/${postId}`, {
         method: "PATCH",
         headers: {
             Accept: "application/json",
@@ -67,8 +68,8 @@ const PostWidget = ({
       });
     }
     else{
-      await fetch(`http://localhost:5001/api/like-post/${postId}`, {
-        // await fetch(`https://friendly-post-service.onrender.com/api/like-post/${postId}`, {
+      // await fetch(`http://localhost:5001/api/like-post/${postId}`, {
+        await fetch(`https://friendly-post-service.onrender.com/api/like-post/${postId}`, {
         method: "PATCH",
         headers: {
             Accept: "application/json",
@@ -81,8 +82,8 @@ const PostWidget = ({
   };
   
   const getPost = async () => {
-    const response = await fetch(`http://localhost:5001/api/post/${postId}`, {
-      // const response = await fetch(`https://friendly-post-service.onrender.com/api/post/${postId}`, {
+    // const response = await fetch(`http://localhost:5001/api/post/${postId}`, {
+      const response = await fetch(`https://friendly-post-service.onrender.com/api/post/${postId}`, {
       method: "GET",
       // headers: { Authorization: `Bearer ${token}` },
     });
